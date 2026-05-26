@@ -32,7 +32,7 @@ const RulerPicker = ({ min, max, unit, value, onChange, step = 1 }) => {
     <div className="relative w-full h-24 overflow-hidden group">
       {/* Center Indicator */}
       <div className="absolute left-1/2 top-0 -translate-x-1/2 z-10 flex flex-col items-center">
-        <div className="w-[3px] h-8 bg-emerald-400 rounded-full shadow-[0_0_10px_#10b981]" />
+        <div className="w-[3px] h-8 bg-emerald-400 rounded-full shadow-[0_0_10px_#29b5b5]" />
         <div className="mt-2 text-xl font-black text-emerald-400 font-mono">
           {value}<span className="text-[10px] ml-1 uppercase opacity-60">{unit}</span>
         </div>
@@ -69,8 +69,8 @@ const RulerPicker = ({ min, max, unit, value, onChange, step = 1 }) => {
       </div>
 
       {/* Fades */}
-      <div className="absolute inset-y-0 left-0 w-20 bg-gradient-to-r from-[#021a10] to-transparent pointer-events-none" />
-      <div className="absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-[#021a10] to-transparent pointer-events-none" />
+      <div className="absolute inset-y-0 left-0 w-20 bg-gradient-to-r from-[#151526] to-transparent pointer-events-none" />
+      <div className="absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-[#151526] to-transparent pointer-events-none" />
     </div>
   );
 };
@@ -110,7 +110,7 @@ export default function HealthProfile({ onNext }) {
                 onClick={() => handleChange('gender', g)}
                 className={`py-3 rounded-2xl border transition-all font-bold text-xs ${
                   profile.gender === g 
-                    ? 'bg-emerald-500/20 border-emerald-500 text-emerald-400 shadow-[0_0_15px_rgba(16,185,129,0.1)]' 
+                    ? 'bg-emerald-500/20 border-emerald-500 text-emerald-400 shadow-[0_0_15px_rgba(41, 181, 181,0.1)]' 
                     : 'bg-white/5 border-white/10 text-white/20'
                 }`}
               >

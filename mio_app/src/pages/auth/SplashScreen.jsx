@@ -46,7 +46,7 @@ function GeneNetwork() {
         const opacity = 0.1 + (Math.sin(this.pulse) + 1) * 0.15;
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(52, 211, 153, ${opacity})`;
+        ctx.fillStyle = `rgba(83, 205, 205, ${opacity})`;
         ctx.fill();
       }
     }
@@ -71,7 +71,7 @@ function GeneNetwork() {
             ctx.beginPath();
             ctx.moveTo(particles[i].x, particles[i].y);
             ctx.lineTo(particles[j].x, particles[j].y);
-            ctx.strokeStyle = `rgba(16, 185, 129, ${alpha})`;
+            ctx.strokeStyle = `rgba(41, 181, 181, ${alpha})`;
             ctx.lineWidth = 0.6;
             ctx.stroke();
           }
@@ -148,21 +148,21 @@ function AuroraOrbs() {
       {/* Top-left emerald orb */}
       <motion.div
         className="absolute -top-32 -left-32 w-[500px] h-[500px] rounded-full"
-        style={{ background: 'radial-gradient(circle, rgba(16,185,129,0.25) 0%, transparent 70%)' }}
+        style={{ background: 'radial-gradient(circle, rgba(41, 181, 181,0.25) 0%, transparent 70%)' }}
         animate={{ scale: [1, 1.15, 1], x: [0, 20, 0], y: [0, -10, 0] }}
         transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
       />
       {/* Bottom-right teal orb */}
       <motion.div
         className="absolute -bottom-40 -right-40 w-[600px] h-[600px] rounded-full"
-        style={{ background: 'radial-gradient(circle, rgba(6,182,212,0.18) 0%, transparent 70%)' }}
+        style={{ background: 'radial-gradient(circle, rgba(128, 115, 231,0.18) 0%, transparent 70%)' }}
         animate={{ scale: [1, 1.1, 1], x: [0, -15, 0], y: [0, 15, 0] }}
         transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut', delay: 2 }}
       />
       {/* Center subtle glow */}
       <motion.div
         className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] rounded-full"
-        style={{ background: 'radial-gradient(circle, rgba(52,211,153,0.12) 0%, transparent 70%)' }}
+        style={{ background: 'radial-gradient(circle, rgba(83, 205, 205,0.12) 0%, transparent 70%)' }}
         animate={{ scale: [1, 1.3, 1], opacity: [0.5, 1, 0.5] }}
         transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
       />
@@ -176,7 +176,7 @@ function LoadingBar({ progress }) {
     <div className="w-48 h-0.5 rounded-full bg-white/10 overflow-hidden">
       <motion.div
         className="h-full rounded-full"
-        style={{ background: 'linear-gradient(90deg, #10b981, #34d399, #6ee7b7)' }}
+        style={{ background: 'linear-gradient(90deg, #29b5b5, #53cdcd, #8073e7)' }}
         initial={{ width: 0 }}
         animate={{ width: `${progress}%` }}
         transition={{ duration: 0.4, ease: 'easeOut' }}
@@ -215,18 +215,18 @@ function HexLogo() {
       >
         <div
           className="absolute inset-0"
-          style={{ background: 'linear-gradient(135deg, #065f46, #10b981, #34d399)' }}
+          style={{ background: 'linear-gradient(135deg, #1b8b8b, #29b5b5, #53cdcd)' }}
         />
         <div className="absolute inset-[2px]"
           style={{
             clipPath: 'polygon(50% 0%, 93.3% 25%, 93.3% 75%, 50% 100%, 6.7% 75%, 6.7% 25%)',
-            background: 'linear-gradient(135deg, #022c22 0%, #064e3b 100%)',
+            background: 'linear-gradient(135deg, #052626 0%, #0a3d3d 100%)',
           }}
         />
       </motion.div>
 
       {/* Center icon – static */}
-      <div className="absolute text-emerald-300 text-2xl select-none" style={{ textShadow: '0 0 20px rgba(52,211,153,0.8)' }}>
+      <div className="absolute text-emerald-300 text-2xl select-none" style={{ textShadow: '0 0 20px rgba(83, 205, 205,0.8)' }}>
         <span className="material-symbols-outlined" style={{ fontSize: 32, fontFamily: "'Material Symbols Outlined'" }}>genetics</span>
       </div>
     </motion.div>
@@ -275,7 +275,7 @@ export default function SplashScreen() {
 
   return (
     <div className="relative min-h-screen w-full overflow-hidden flex flex-col items-center justify-center"
-      style={{ background: 'linear-gradient(160deg, #020d08 0%, #021a10 40%, #031a0e 100%)' }}
+      style={{ background: 'linear-gradient(160deg, #0e0e1a 0%, #151526 40%, #1a1a2e 100%)' }}
     >
       {/* Background layers */}
       <AuroraOrbs />
@@ -304,7 +304,7 @@ export default function SplashScreen() {
         >
           <h1
             className="text-5xl font-black tracking-[-0.06em] text-white"
-            style={{ textShadow: '0 0 40px rgba(52,211,153,0.3)' }}
+            style={{ textShadow: '0 0 40px rgba(83, 205, 205,0.3)' }}
           >
             MIO
           </h1>
@@ -349,11 +349,11 @@ export default function SplashScreen() {
               className="flex flex-col items-center gap-4 mt-4 w-full max-w-xs"
             >
               <motion.button
-                whileHover={{ scale: 1.03, boxShadow: '0 0 40px rgba(52,211,153,0.4)' }}
+                whileHover={{ scale: 1.03, boxShadow: '0 0 40px rgba(83, 205, 205,0.4)' }}
                 whileTap={{ scale: 0.97 }}
                 onClick={handleStart}
                 className="relative w-full overflow-hidden rounded-full py-4 px-8 text-sm font-black uppercase tracking-[0.2em] text-white shadow-2xl"
-                style={{ background: 'linear-gradient(135deg, #065f46 0%, #10b981 50%, #34d399 100%)' }}
+                style={{ background: 'linear-gradient(135deg, #1b8b8b 0%, #29b5b5 50%, #53cdcd 100%)' }}
               >
                 {/* Sheen sweep */}
                 <motion.div
@@ -384,7 +384,7 @@ export default function SplashScreen() {
         animate={{ scaleX: 1 }}
         transition={{ duration: 1.5, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
         className="absolute bottom-0 left-0 right-0 h-px"
-        style={{ background: 'linear-gradient(90deg, transparent, rgba(52,211,153,0.4), transparent)' }}
+        style={{ background: 'linear-gradient(90deg, transparent, rgba(83, 205, 205,0.4), transparent)' }}
       />
 
     </div>

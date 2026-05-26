@@ -9,25 +9,25 @@ function AuthBackground() {
       {/* Deep dark base */}
       <div
         className="absolute inset-0"
-        style={{ background: 'linear-gradient(160deg, #020d08 0%, #021a10 50%, #010d07 100%)' }}
+        style={{ background: 'linear-gradient(160deg, #0e0e1a 0%, #151526 50%, #010d07 100%)' }}
       />
 
       {/* Aurora orbs */}
       <motion.div
         className="absolute -top-40 -left-40 w-[600px] h-[600px] rounded-full pointer-events-none"
-        style={{ background: 'radial-gradient(circle, rgba(16,185,129,0.22) 0%, transparent 65%)' }}
+        style={{ background: 'radial-gradient(circle, rgba(41, 181, 181,0.22) 0%, transparent 65%)' }}
         animate={{ scale: [1, 1.1, 1], rotate: [0, 15, 0] }}
         transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut' }}
       />
       <motion.div
         className="absolute -bottom-40 -right-32 w-[500px] h-[500px] rounded-full pointer-events-none"
-        style={{ background: 'radial-gradient(circle, rgba(6,182,212,0.16) 0%, transparent 65%)' }}
+        style={{ background: 'radial-gradient(circle, rgba(128, 115, 231,0.16) 0%, transparent 65%)' }}
         animate={{ scale: [1, 1.15, 1] }}
         transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut', delay: 2 }}
       />
       <motion.div
         className="absolute top-1/3 right-1/4 w-[300px] h-[300px] rounded-full pointer-events-none"
-        style={{ background: 'radial-gradient(circle, rgba(52,211,153,0.1) 0%, transparent 70%)' }}
+        style={{ background: 'radial-gradient(circle, rgba(83, 205, 205,0.1) 0%, transparent 70%)' }}
         animate={{ x: [0, 20, 0], y: [0, -15, 0] }}
         transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
       />
@@ -102,8 +102,8 @@ function AuthField({ id, label, type = 'text', value, onChange, icon, placeholde
           onBlur={() => setFocused(false)}
           className="w-full rounded-2xl bg-white/5 border pl-11 pr-12 py-4 text-sm font-medium text-white placeholder-white/20 outline-none transition-all duration-300"
           style={{
-            borderColor: focused ? 'rgba(52,211,153,0.5)' : 'rgba(255,255,255,0.06)',
-            boxShadow: focused ? '0 0 0 3px rgba(52,211,153,0.08), inset 0 1px 0 rgba(255,255,255,0.04)' : 'inset 0 1px 0 rgba(255,255,255,0.04)',
+            borderColor: focused ? 'rgba(83, 205, 205,0.5)' : 'rgba(255,255,255,0.06)',
+            boxShadow: focused ? '0 0 0 3px rgba(83, 205, 205,0.08), inset 0 1px 0 rgba(255,255,255,0.04)' : 'inset 0 1px 0 rgba(255,255,255,0.04)',
           }}
         />
 
@@ -118,7 +118,7 @@ function AuthField({ id, label, type = 'text', value, onChange, icon, placeholde
           className="absolute inset-0 rounded-2xl pointer-events-none"
           animate={{ opacity: focused ? 1 : 0 }}
           transition={{ duration: 0.2 }}
-          style={{ boxShadow: '0 0 20px rgba(52,211,153,0.15)' }}
+          style={{ boxShadow: '0 0 20px rgba(83, 205, 205,0.15)' }}
         />
       </div>
     </div>
@@ -196,7 +196,7 @@ export default function LoginPage() {
           {/* Mini hex badge */}
           <motion.div
             className="w-12 h-12 mb-6 flex items-center justify-center rounded-2xl border border-emerald-500/20"
-            style={{ background: 'linear-gradient(135deg, rgba(16,185,129,0.15), rgba(52,211,153,0.05))' }}
+            style={{ background: 'linear-gradient(135deg, rgba(41, 181, 181,0.15), rgba(83, 205, 205,0.05))' }}
             whileHover={{ rotate: 10 }}
           >
             <span className="material-symbols-outlined text-emerald-400" style={{ fontSize: 22 }}>genetics</span>
@@ -283,7 +283,7 @@ export default function LoginPage() {
             onClick={handleLogin}
             disabled={isLoading}
             className="relative w-full overflow-hidden rounded-2xl py-4 text-sm font-black uppercase tracking-[0.18em] text-white shadow-xl disabled:opacity-60"
-            style={{ background: 'linear-gradient(135deg, #065f46 0%, #10b981 60%, #34d399 100%)' }}
+            style={{ background: 'linear-gradient(135deg, #1b8b8b 0%, #29b5b5 60%, #53cdcd 100%)' }}
           >
             {/* Shimmer effect */}
             {!isLoading && (

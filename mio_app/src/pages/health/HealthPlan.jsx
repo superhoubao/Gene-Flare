@@ -58,8 +58,8 @@ export default function HealthPlan({ isNewUser = false }) {
         <section className="relative overflow-hidden rounded-[40px] bg-[#0b1015] p-8 text-white shadow-2xl">
           <div className="relative z-10">
             <div className="flex items-center gap-2 mb-6">
-              <span className="material-symbols-outlined text-emerald-400 animate-pulse">auto_awesome</span>
-              <span className="text-[10px] font-black uppercase tracking-[0.2em] text-emerald-400/80">AI Intelligent Recommendation</span>
+              <span className="material-symbols-outlined text-tertiary animate-pulse">auto_awesome</span>
+              <span className="text-[10px] font-black uppercase tracking-[0.2em] text-tertiary/80">AI Intelligent Recommendation</span>
             </div>
             <h3 className="text-[2.5rem] font-black tracking-tight leading-tight mb-4">Personalized AI Health Engine</h3>
             <p className="text-white/60 text-base max-w-[40ch] mb-8 leading-relaxed">
@@ -67,13 +67,13 @@ export default function HealthPlan({ isNewUser = false }) {
             </p>
             <motion.button 
               whileTap={{ scale: 0.95 }}
-              className="px-8 py-4 bg-emerald-500 rounded-2xl text-slate-900 font-black uppercase tracking-widest text-xs shadow-[0_0_20px_rgba(16,185,129,0.3)]"
+              className="px-8 py-4 bg-tertiary rounded-2xl text-[#0a0a14] font-black uppercase tracking-widest text-xs shadow-[0_0_20px_rgba(83,205,205,0.3)]"
             >
               Start Deep Assessment
             </motion.button>
           </div>
           <div className="absolute top-0 right-0 w-full h-full opacity-20 pointer-events-none overflow-hidden">
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full border border-emerald-500/30 animate-ping" style={{ animationDuration: '4s' }} />
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full border border-tertiary/30 animate-ping" style={{ animationDuration: '4s' }} />
           </div>
         </section>
 
@@ -87,7 +87,7 @@ export default function HealthPlan({ isNewUser = false }) {
             {recommendedPlans.map((plan) => (
               <article key={plan.id} className="flex-shrink-0 w-[280px] rounded-[32px] bg-white p-6 shadow-lg border border-slate-100">
                 <div className="flex justify-between items-start mb-4">
-                  <span className="bg-emerald-50 text-[9px] font-black uppercase tracking-widest text-emerald-700 px-2 py-1 rounded-full">{plan.reward}</span>
+                  <span className="bg-[#151526] text-[9px] font-black uppercase tracking-widest text-tertiary px-2 py-1 rounded-full">{plan.reward}</span>
                   <span className="material-symbols-outlined text-slate-300">add_circle</span>
                 </div>
                 <h4 className="text-xl font-black tracking-tight text-slate-950 mb-3">{planTitle(plan)}</h4>
@@ -177,7 +177,7 @@ export default function HealthPlan({ isNewUser = false }) {
                   <p className="text-[10px] font-black uppercase tracking-[0.18em] text-primary/65">{t('healthPlan.planValue')}</p>
                   <p className="mt-2 text-xl font-black tracking-tight text-primary">{planValue(plan)}</p>
                   <div className="mt-4 h-2 overflow-hidden rounded-full bg-white">
-                    <div className="h-full rounded-full bg-gradient-to-r from-primary to-emerald-400" style={{ width: `${plan.progressValue}%` }} />
+                    <div className="h-full rounded-full bg-gradient-to-r from-primary to-tertiary" style={{ width: `${plan.progressValue}%` }} />
                   </div>
                 </div>
               </div>
@@ -196,7 +196,7 @@ export default function HealthPlan({ isNewUser = false }) {
             <article key={plan.id} className="rounded-[26px] border border-white/10 bg-white/5 p-5">
               <div className="flex items-center justify-between gap-3">
                 <span className="rounded-full bg-white/10 px-3 py-1 text-[10px] font-black uppercase tracking-[0.18em] text-white/78">{planSource(plan)}</span>
-                <span className="text-sm font-black text-emerald-100">{plan.reward}</span>
+                <span className="text-sm font-black text-tertiary">{plan.reward}</span>
               </div>
               <h4 className="mt-4 text-[1.55rem] font-black tracking-[-0.04em]">{planTitle(plan)}</h4>
               <p className="mt-3 text-sm leading-relaxed text-white/74">{planReason(plan)}</p>

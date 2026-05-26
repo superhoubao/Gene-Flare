@@ -32,21 +32,21 @@ export default function HealthPlanPage() {
       <div className="absolute top-14 right-20 z-[60]">
         <button 
           onClick={() => setViewMode(viewMode === 'SQUARE' ? 'PLANS' : 'SQUARE')}
-          className="px-3 py-1 bg-emerald-500 text-slate-900 text-[10px] font-black rounded-full shadow-lg border border-emerald-400"
+          className="px-3 py-1 bg-tertiary text-slate-900 text-[10px] font-black rounded-full shadow-lg border border-tertiary"
         >
           {viewMode === 'SQUARE' ? 'DEBUG: SHOW PLANS' : 'DEBUG: SHOW SQUARE'}
         </button>
       </div>
       <TopAppBar showBack title={t('healthPlan.dashboard.pageTitle')} rightIcon={null} avatarSrc={avatarBoy} />
       <main className="px-6 pb-24 pt-6">
-        <section className={`editorial-frame overflow-hidden rounded-[38px] p-7 shadow-[0_18px_44px_-20px_rgba(0,80,46,0.15)] ${
+        <section className={`editorial-frame overflow-hidden rounded-[38px] p-7 shadow-[0_18px_44px_-20px_rgba(83,205,205,0.15)] ${
           isNewUser 
-            ? 'bg-gradient-to-br from-[#061a12] via-[#0b2b1d] to-[#04120c] text-white' 
+            ? 'bg-gradient-to-br from-[#1c1c30] via-[#151526] to-[#0a0a14] text-white' 
             : 'bg-gradient-to-br from-[#f4f2eb] via-white to-[#eef4f0]'
         }`}>
           <div className="flex flex-wrap items-start justify-between gap-6">
             <div className="max-w-[520px]">
-              <p className={`text-[11px] font-black uppercase tracking-[0.22em] ${isNewUser ? 'text-emerald-400' : 'text-primary/55'}`}>
+              <p className={`text-[11px] font-black uppercase tracking-[0.22em] ${isNewUser ? 'text-tertiary' : 'text-primary/55'}`}>
                 {isNewUser ? 'Ready to Start?' : t('healthPlan.dashboard.tag')}
               </p>
               <h1 className={`mt-4 text-[3rem] font-black tracking-[-0.05em] leading-[0.92] md:text-[4rem] ${isNewUser ? 'text-white' : 'text-slate-950'}`}>
@@ -67,7 +67,7 @@ export default function HealthPlanPage() {
                     : 'bg-white/90 border-white/60'
                 } ${index % 2 === 0 ? 'lg:-translate-y-4' : 'lg:translate-y-4'} hover:-translate-y-1`}>
                   <p className={`text-[12px] font-black uppercase tracking-[0.12em] leading-tight ${isNewUser ? 'text-white/40' : 'text-slate-500'}`}>{item.label}</p>
-                  <p className={`mt-4 text-[2.5rem] font-black leading-none tracking-tight ${isNewUser ? 'text-emerald-400' : 'text-slate-950'}`}>{item.value}</p>
+                  <p className={`mt-4 text-[2.5rem] font-black leading-none tracking-tight ${isNewUser ? 'text-tertiary' : 'text-slate-950'}`}>{item.value}</p>
                 </div>
               ))}
             </div>

@@ -116,7 +116,7 @@ export default function WelcomeGate({ onNext, onSkip }) {
           whileTap={{ scale: 0.98 }}
           onClick={onNext}
           className="relative w-full overflow-hidden rounded-2xl py-4 text-sm font-black uppercase tracking-[0.2em] text-white shadow-xl"
-          style={{ background: 'linear-gradient(135deg, #065f46 0%, #10b981 60%, #34d399 100%)' }}
+          style={{ background: 'linear-gradient(135deg, #1b8b8b 0%, #29b5b5 60%, #53cdcd 100%)' }}
         >
           <motion.div
             className="absolute inset-0"

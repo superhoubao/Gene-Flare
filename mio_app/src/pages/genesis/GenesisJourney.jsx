@@ -96,10 +96,10 @@ export default function GenesisJourney() {
   return (
     <div className="fixed inset-0 overflow-hidden">
       {/* Background */}
-      <div className="absolute inset-0" style={{ background: 'linear-gradient(160deg, #020d08 0%, #021a10 50%, #010d07 100%)' }} />
+      <div className="absolute inset-0" style={{ background: 'linear-gradient(160deg, #0e0e1a 0%, #151526 50%, #010d07 100%)' }} />
       <motion.div
         className="absolute -top-40 -left-40 w-[600px] h-[600px] rounded-full pointer-events-none"
-        style={{ background: 'radial-gradient(circle, rgba(16,185,129,0.15) 0%, transparent 65%)' }}
+        style={{ background: 'radial-gradient(circle, rgba(41, 181, 181,0.15) 0%, transparent 65%)' }}
         animate={{ scale: [1, 1.1, 1] }}
         transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut' }}
       />

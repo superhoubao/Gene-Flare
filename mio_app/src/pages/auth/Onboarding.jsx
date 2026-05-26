@@ -10,7 +10,7 @@ const SLIDES = [
     subtitle: 'Your DNA, Your Property',
     description: 'Secure your unique genetic blueprint using blockchain encryption. You own your data, forever.',
     icon: 'genetics',
-    color: '#10b981',
+    color: '#29b5b5',
     gradient: 'from-emerald-500/20 to-transparent'
   },
   {
@@ -28,7 +28,7 @@ const SLIDES = [
     subtitle: 'Contribute & Earn',
     description: 'Turn your health into value. Securely share anonymized data for research and earn protocol rewards.',
     icon: 'account_balance_wallet',
-    color: '#34d399',
+    color: '#53cdcd',
     gradient: 'from-teal-500/20 to-transparent'
   }
 ];
@@ -77,11 +77,11 @@ export default function Onboarding() {
   };
 
   return (
-    <div className="relative min-h-screen w-full bg-[#020d08] overflow-hidden flex flex-col">
+    <div className="relative min-h-screen w-full bg-[#0e0e1a] overflow-hidden flex flex-col">
       {/* Background Decor */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-0 left-0 w-full h-full opacity-30" 
-          style={{ background: 'radial-gradient(circle at 50% 30%, rgba(16,185,129,0.15) 0%, transparent 70%)' }} />
+          style={{ background: 'radial-gradient(circle at 50% 30%, rgba(41, 181, 181,0.15) 0%, transparent 70%)' }} />
         <div className="absolute inset-0 opacity-[0.03]" 
           style={{ backgroundImage: 'linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
       </div>
@@ -189,7 +189,7 @@ export default function Onboarding() {
           whileTap={{ scale: 0.98 }}
           onClick={handleNext}
           className="relative w-full max-w-[240px] py-4 rounded-2xl text-sm font-black uppercase tracking-[0.2em] text-white overflow-hidden group"
-          style={{ background: 'linear-gradient(135deg, #065f46 0%, #10b981 100%)' }}
+          style={{ background: 'linear-gradient(135deg, #1b8b8b 0%, #29b5b5 100%)' }}
         >
           <div className="absolute inset-0 bg-white/10 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
           <span className="relative flex items-center justify-center gap-2">

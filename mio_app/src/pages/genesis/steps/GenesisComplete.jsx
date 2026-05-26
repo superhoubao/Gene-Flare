@@ -17,7 +17,7 @@ export default function GenesisComplete({ onFinish }) {
           transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
           className="absolute inset-0 w-32 h-32 -m-4 border-2 border-dashed border-emerald-500/30 rounded-full"
         />
-        <div className="w-24 h-24 rounded-full bg-gradient-to-br from-emerald-400 to-teal-500 flex items-center justify-center shadow-[0_0_50px_rgba(16,185,129,0.4)]">
+        <div className="w-24 h-24 rounded-full bg-gradient-to-br from-emerald-400 to-teal-500 flex items-center justify-center shadow-[0_0_50px_rgba(41, 181, 181,0.4)]">
           <span className="material-symbols-outlined text-5xl text-white font-bold" style={{ fontFamily: "'Material Symbols Outlined'" }}>
             auto_awesome
           </span>

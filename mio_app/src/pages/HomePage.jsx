@@ -109,7 +109,7 @@ export default function HomePage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
             >
-              <span className="inline-block rounded-full bg-emerald-500/25 px-4 py-1.5 text-[11px] font-black uppercase tracking-[0.25em] text-emerald-300 backdrop-blur-xl border border-emerald-400/20 mb-8 shadow-[0_0_20px_rgba(16,185,129,0.2)]">
+              <span className="inline-block rounded-full bg-emerald-500/25 px-4 py-1.5 text-[11px] font-black uppercase tracking-[0.25em] text-emerald-300 backdrop-blur-xl border border-emerald-400/20 mb-8 shadow-[0_0_20px_rgba(41, 181, 181,0.2)]">
                 {t('home.sections.hero.tag')}
               </span>
               <h1 className="text-[3.4rem] font-black leading-[0.88] tracking-[-0.07em] text-white lg:text-[5.5rem] drop-shadow-[0_10px_30px_rgba(0,0,0,0.5)]">
@@ -215,7 +215,7 @@ export default function HomePage() {
                       initial={{ width: 0 }}
                       animate={{ width: '67%' }}
                       transition={{ duration: 1.5, ease: "easeOut" }}
-                      className="h-full rounded-full bg-[linear-gradient(90deg,#10b981,#34d399)] shadow-[0_0_12px_rgba(16,185,129,0.4)]" 
+                      className="h-full rounded-full bg-[linear-gradient(90deg,#29b5b5,#53cdcd)] shadow-[0_0_12px_rgba(41, 181, 181,0.4)]" 
                     />
                   </div>
                 </div>

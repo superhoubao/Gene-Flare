@@ -92,7 +92,7 @@ export default function AIAssessment({ onNext }) {
   const roundedScore = Math.round(healthScore);
 
   const getScoreColor = (score) => {
-    if (score >= 80) return '#10b981';
+    if (score >= 80) return '#29b5b5';
     if (score >= 60) return '#f59e0b';
     return '#ef4444';
   };
@@ -267,7 +267,7 @@ export default function AIAssessment({ onNext }) {
               {/* Dimension cards */}
               <div className="grid grid-cols-3 gap-3">
                 {[
-                  { label: 'Physical', score: Math.min(100, roundedScore + 5), color: '#10b981' },
+                  { label: 'Physical', score: Math.min(100, roundedScore + 5), color: '#29b5b5' },
                   { label: 'Mental', score: Math.max(0, roundedScore - 8), color: '#06b6d4' },
                   { label: 'Lifestyle', score: Math.min(100, roundedScore + 2), color: '#8b5cf6' },
                 ].map((dim) => (
@@ -317,7 +317,7 @@ export default function AIAssessment({ onNext }) {
           whileTap={{ scale: 0.98 }}
           onClick={onNext}
           className="w-full rounded-2xl py-4 text-sm font-black uppercase tracking-[0.18em] text-white shadow-xl mt-6"
-          style={{ background: 'linear-gradient(135deg, #065f46 0%, #10b981 60%, #34d399 100%)' }}
+          style={{ background: 'linear-gradient(135deg, #1b8b8b 0%, #29b5b5 60%, #53cdcd 100%)' }}
         >
           <span className="flex items-center justify-center gap-2">
             Continue to Mint

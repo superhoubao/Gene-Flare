@@ -149,7 +149,7 @@ export default function CollectionPage() {
         {/* Global CSS for perspective if needed */}
         <style dangerouslySetInnerHTML={{ __html: `
           .vitality-gradient {
-            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            background: linear-gradient(135deg, #29b5b5 0%, #059669 100%);
           }
         `}} />
       </div>

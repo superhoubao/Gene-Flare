@@ -148,7 +148,7 @@ export default function MyNFTs() {
                   <div className="relative before:absolute before:left-[11px] before:top-4 before:h-[calc(100%-32px)] before:w-0.5 before:bg-gradient-to-b before:from-emerald-400 before:to-emerald-100/30">
                     {rewardStages.map((item, index) => (
                       <div key={item.name} className="relative pl-8 pb-8 last:pb-0">
-                        <div className={`absolute left-0 top-1 h-[24px] w-[24px] rounded-full border-4 border-[#fdfaf5] ${index === 0 ? 'bg-emerald-500 shadow-[0_0_12px_rgba(16,185,129,0.5)]' : 'bg-emerald-200'}`} />
+                        <div className={`absolute left-0 top-1 h-[24px] w-[24px] rounded-full border-4 border-[#fdfaf5] ${index === 0 ? 'bg-emerald-500 shadow-[0_0_12px_rgba(41, 181, 181,0.5)]' : 'bg-emerald-200'}`} />
                         <div className="rounded-[24px] bg-white p-6 shadow-sm border border-orange-50/50">
                           <div className="flex items-center justify-between gap-3">
                             <p className="text-[10px] font-black uppercase tracking-[0.18em] text-slate-500">{item.name}</p>
@@ -230,22 +230,22 @@ export default function MyNFTs() {
       />
 
       <main className="relative space-y-8 px-6 pb-32 pt-4">
-        <section className="aurora-panel editorial-frame overflow-hidden rounded-[38px] bg-gradient-to-br from-[#051811] via-[#0a2e21] to-[#04160f] p-7 text-white lg:p-8">
+        <section className="aurora-panel editorial-frame overflow-hidden rounded-[38px] bg-gradient-to-br from-[#1c1c30] via-[#151526] to-[#0a0a14] p-7 text-white lg:p-8">
           <div className="grid gap-6 lg:grid-cols-[1.08fr_0.92fr] lg:items-start">
             <div className="max-w-[520px]">
               <div className="flex items-center gap-3">
-                <p className="text-xs font-black uppercase tracking-[0.22em] text-emerald-100/60">{t('researchPage.terminal')}</p>
+                <p className="text-xs font-black uppercase tracking-[0.22em] text-tertiary/60">{t('researchPage.terminal')}</p>
                 {isDidVerified && (
-                  <div className="flex items-center gap-1.5 rounded-full bg-emerald-500/20 px-2.5 py-1 border border-emerald-400/30">
-                    <span className="material-symbols-outlined text-[12px] text-emerald-400">verified</span>
-                    <span className="text-[10px] font-bold text-emerald-400 tracking-wider">DID: VERIFIED</span>
+                  <div className="flex items-center gap-1.5 rounded-full bg-tertiary/20 px-2.5 py-1 border border-tertiary/30">
+                    <span className="material-symbols-outlined text-[12px] text-tertiary">verified</span>
+                    <span className="text-[10px] font-bold text-tertiary tracking-wider">DID: VERIFIED</span>
                   </div>
                 )}
               </div>
               <h1 className="mt-4 text-[2.5rem] font-black tracking-[-0.05em] leading-[0.92] md:text-[4.25rem]">
                 {t('researchPage.title')}
               </h1>
-              <p className="mt-4 max-w-[36ch] text-[0.95rem] leading-snug text-emerald-50/80">
+              <p className="mt-4 max-w-[36ch] text-[0.95rem] leading-snug text-white/80">
                 {t('researchPage.desc')}
               </p>
 
@@ -255,7 +255,7 @@ export default function MyNFTs() {
                     const el = document.getElementById('inventory-section');
                     if (el) el.scrollIntoView({ behavior: 'smooth' });
                   }}
-                  className="rounded-full bg-white px-6 py-3 text-sm font-black uppercase tracking-[0.16em] text-[#004d2c] shadow-lg active:scale-95 transition-all"
+                  className="rounded-full bg-white px-6 py-3 text-sm font-black uppercase tracking-[0.16em] text-primary shadow-lg active:scale-95 transition-all"
                 >
                   {t('researchPage.mintNFT')}
                 </button>
@@ -269,18 +269,18 @@ export default function MyNFTs() {
             </div>
 
             <div className="grid grid-cols-2 gap-3 lg:translate-y-8">
-              <div className="col-span-2 relative overflow-hidden rounded-[28px] border border-emerald-400/20 bg-gradient-to-br from-emerald-900/40 to-emerald-800/10 p-5 shadow-[0_8px_32px_rgba(0,255,127,0.15)] backdrop-blur-xl">
-                <div className="absolute -right-10 -top-10 h-32 w-32 rounded-full bg-emerald-400/20 blur-3xl pointer-events-none" />
-                <p className="text-[10px] font-black uppercase tracking-[0.18em] text-emerald-200/70">{terminalStats[0].label}</p>
+              <div className="col-span-2 relative overflow-hidden rounded-[28px] border border-tertiary/20 bg-gradient-to-br from-[#24243c]/80 to-[#151526]/40 p-5 shadow-[0_8px_32px_rgba(83,205,205,0.15)] backdrop-blur-xl">
+                <div className="absolute -right-10 -top-10 h-32 w-32 rounded-full bg-tertiary/20 blur-3xl pointer-events-none" />
+                <p className="text-[10px] font-black uppercase tracking-[0.18em] text-tertiary/70">{terminalStats[0].label}</p>
                 <div className="mt-1 flex items-baseline gap-1">
                   <p className="text-[2.6rem] font-black tracking-tight text-white leading-none">$1,250</p>
-                  <span className="text-lg font-bold text-emerald-200/50">/ year</span>
+                  <span className="text-lg font-bold text-tertiary/50">/ year</span>
                 </div>
               </div>
 
               <div className="flex flex-col justify-center rounded-[24px] border border-white/10 bg-white/10 p-5 backdrop-blur-md">
                 <p className="text-[10px] font-black uppercase tracking-[0.16em] text-white/55">{terminalStats[2].label}</p>
-                <p className="mt-2 text-[1.65rem] font-black tracking-tight text-emerald-100">{terminalStats[2].value}</p>
+                <p className="mt-2 text-[1.65rem] font-black tracking-tight text-tertiary">{terminalStats[2].value}</p>
               </div>
 
               <div className="grid gap-3">
@@ -504,24 +504,24 @@ export default function MyNFTs() {
                     </div>
                   </div>
 
-                  <div className="editorial-frame relative hidden lg:block overflow-hidden rounded-[34px] bg-[#051119] p-6 text-emerald-400 shadow-[0_24px_64px_-16px_rgba(9,26,38,0.5)] border border-white/5 lg:p-7">
-                    <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-emerald-500/50 to-transparent"></div>
-                    <p className="text-[11px] font-black uppercase tracking-[0.18em] text-emerald-500/60 font-mono">{t('researchPage.proofStream')}</p>
+                  <div className="editorial-frame relative hidden lg:block overflow-hidden rounded-[34px] bg-[#0a0a14] p-6 text-tertiary shadow-[0_24px_64px_-16px_rgba(9,26,38,0.5)] border border-white/5 lg:p-7">
+                    <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-tertiary/50 to-transparent"></div>
+                    <p className="text-[11px] font-black uppercase tracking-[0.18em] text-tertiary/60 font-mono">{t('researchPage.proofStream')}</p>
                     <h2 className="mt-3 text-[1.8rem] font-black tracking-[-0.05em] leading-[0.95] text-white">
                       {t('researchPage.proofTitle')}
                     </h2>
                     <div className="mt-8 space-y-1 font-mono text-[13px] tracking-tight">
                       {proofLogs.map((item) => (
                         <div key={item} className="flex items-start gap-3 py-2 border-b border-white/5 last:border-0">
-                          <span className="mt-1 block h-1.5 w-1.5 shrink-0 rounded-full bg-emerald-500 shadow-[0_0_8px_#10b981]"></span>
-                          <span className="text-emerald-100/80">
-                            <span className="text-emerald-500/50 mr-2">[{new Date().toISOString().split('T')[1].substring(0, 8)}]</span>
+                          <span className="mt-1 block h-1.5 w-1.5 shrink-0 rounded-full bg-tertiary shadow-[0_0_8px_#53cdcd]"></span>
+                          <span className="text-white/80">
+                            <span className="text-tertiary/50 mr-2">[{new Date().toISOString().split('T')[1].substring(0, 8)}]</span>
                             {item}
                           </span>
                         </div>
                       ))}
                       <div className="flex items-center gap-3 py-2">
-                        <span className="block h-2 w-1.5 bg-emerald-400 animate-pulse"></span>
+                        <span className="block h-2 w-1.5 bg-tertiary animate-pulse"></span>
                       </div>
                     </div>
                   </div>
@@ -571,7 +571,7 @@ export default function MyNFTs() {
                   <div className="space-y-3">
                     {selectedPack.details.map((detail) => (
                       <div key={detail.label} className="flex items-start gap-3">
-                        <span className="material-symbols-outlined text-emerald-500 text-sm mt-0.5">verified</span>
+                        <span className="material-symbols-outlined text-tertiary text-sm mt-0.5">verified</span>
                         <div>
                           <p className="text-sm font-black text-slate-800 leading-none">{detail.label}</p>
                           <p className="text-xs text-slate-500 mt-1">{detail.desc}</p>
@@ -581,12 +581,12 @@ export default function MyNFTs() {
                   </div>
                 </div>
 
-                <div className="rounded-[24px] bg-emerald-950 p-6 text-white relative overflow-hidden">
+                <div className="rounded-[24px] bg-[#151526] p-6 text-white relative overflow-hidden">
                   <div className="absolute top-0 right-0 p-4 opacity-20 pointer-events-none">
                     <span className="material-symbols-outlined text-4xl">security</span>
                   </div>
-                  <p className="text-xs font-bold text-emerald-400 mb-2 flex items-center gap-2">
-                    <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                  <p className="text-xs font-bold text-tertiary mb-2 flex items-center gap-2">
+                    <span className="w-2 h-2 rounded-full bg-tertiary animate-pulse"></span>
                     {t('researchPage.modal.protocolReady')}
                   </p>
                   <p className="text-sm leading-relaxed text-emerald-100/80">

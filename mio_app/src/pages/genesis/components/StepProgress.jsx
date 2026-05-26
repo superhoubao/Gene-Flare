@@ -16,9 +16,9 @@ export default function StepProgress({ current, total }) {
             width: i === current ? 28 : 8,
             backgroundColor:
               i < current
-                ? '#10b981'
+                ? '#29b5b5'
                 : i === current
-                ? '#34d399'
+                ? '#53cdcd'
                 : 'rgba(255,255,255,0.1)',
           }}
           transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}

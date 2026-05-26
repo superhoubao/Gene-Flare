@@ -186,7 +186,7 @@ export default function ConnectHealth({ onNext, onSkip }) {
           onClick={onNext}
           disabled={connectedCount === 0 && !syncing}
           className="relative w-full overflow-hidden rounded-2xl py-4 text-sm font-black uppercase tracking-[0.18em] text-white shadow-xl disabled:opacity-40 disabled:cursor-not-allowed"
-          style={{ background: connectedCount > 0 ? 'linear-gradient(135deg, #065f46 0%, #10b981 60%, #34d399 100%)' : 'rgba(255,255,255,0.08)' }}
+          style={{ background: connectedCount > 0 ? 'linear-gradient(135deg, #1b8b8b 0%, #29b5b5 60%, #53cdcd 100%)' : 'rgba(255,255,255,0.08)' }}
         >
           <span className="relative flex items-center justify-center gap-2">
             {connectedCount > 0 ? 'Continue' : 'Connect a source to continue'}

@@ -7,12 +7,12 @@ function AuthBackground() {
   return (
     <div className="absolute inset-0 overflow-hidden">
       <div className="absolute inset-0"
-        style={{ background: 'linear-gradient(160deg, #020d08 0%, #021a10 50%, #010d07 100%)' }} />
+        style={{ background: 'linear-gradient(160deg, #0e0e1a 0%, #151526 50%, #010d07 100%)' }} />
       <motion.div className="absolute -top-40 -right-40 w-[600px] h-[600px] rounded-full pointer-events-none"
-        style={{ background: 'radial-gradient(circle, rgba(16,185,129,0.2) 0%, transparent 65%)' }}
+        style={{ background: 'radial-gradient(circle, rgba(41, 181, 181,0.2) 0%, transparent 65%)' }}
         animate={{ scale: [1, 1.12, 1] }} transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }} />
       <motion.div className="absolute -bottom-32 -left-32 w-[500px] h-[500px] rounded-full pointer-events-none"
-        style={{ background: 'radial-gradient(circle, rgba(6,182,212,0.14) 0%, transparent 65%)' }}
+        style={{ background: 'radial-gradient(circle, rgba(128, 115, 231,0.14) 0%, transparent 65%)' }}
         animate={{ scale: [1, 1.1, 1] }} transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut', delay: 2 }} />
       <div className="absolute inset-0 opacity-[0.03]"
         style={{ backgroundImage: 'linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)', backgroundSize: '48px 48px' }} />
@@ -30,7 +30,7 @@ function StepIndicator({ current, total }) {
             className="rounded-full"
             animate={{
               width: i === current ? 24 : 6,
-              backgroundColor: i < current ? '#10b981' : i === current ? '#34d399' : 'rgba(255,255,255,0.15)',
+              backgroundColor: i < current ? '#29b5b5' : i === current ? '#53cdcd' : 'rgba(255,255,255,0.15)',
             }}
             style={{ height: 6 }}
             transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
@@ -59,8 +59,8 @@ function Field({ id, label, type = 'text', value, onChange, icon, placeholder, h
           onFocus={() => setFocused(true)} onBlur={() => setFocused(false)}
           className="w-full rounded-2xl bg-white/5 border pl-11 pr-12 py-4 text-sm font-medium text-white placeholder-white/20 outline-none transition-all duration-300"
           style={{
-            borderColor: focused ? 'rgba(52,211,153,0.5)' : 'rgba(255,255,255,0.06)',
-            boxShadow: focused ? '0 0 0 3px rgba(52,211,153,0.08)' : 'none',
+            borderColor: focused ? 'rgba(83, 205, 205,0.5)' : 'rgba(255,255,255,0.06)',
+            boxShadow: focused ? '0 0 0 3px rgba(83, 205, 205,0.08)' : 'none',
           }}
         />
         {suffix && (
@@ -83,7 +83,7 @@ function PasswordStrength({ password }) {
     { label: 'Symbol', ok: /[^a-zA-Z0-9]/.test(password) },
   ];
   const score = checks.filter((c) => c.ok).length;
-  const colors = ['#ef4444', '#f97316', '#eab308', '#10b981'];
+  const colors = ['#ef4444', '#f97316', '#eab308', '#29b5b5'];
   const labels = ['Weak', 'Fair', 'Good', 'Strong'];
 
   if (!password) return null;
@@ -196,7 +196,7 @@ export default function RegisterPage() {
 
           <motion.div
             className="w-11 h-11 rounded-2xl flex items-center justify-center mb-5 border border-emerald-500/20"
-            style={{ background: 'linear-gradient(135deg, rgba(16,185,129,0.15), rgba(52,211,153,0.05))' }}
+            style={{ background: 'linear-gradient(135deg, rgba(41, 181, 181,0.15), rgba(83, 205, 205,0.05))' }}
             key={step}
             initial={{ scale: 0.7, rotate: -15 }} animate={{ scale: 1, rotate: 0 }}
             transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
@@ -303,9 +303,9 @@ export default function RegisterPage() {
                           onClick={() => setSex(s)}
                           className="rounded-xl py-3 text-xs font-black transition-all border"
                           style={{
-                            borderColor: sex === s ? 'rgba(52,211,153,0.5)' : 'rgba(255,255,255,0.06)',
-                            background: sex === s ? 'rgba(52,211,153,0.12)' : 'rgba(255,255,255,0.04)',
-                            color: sex === s ? '#34d399' : 'rgba(255,255,255,0.4)',
+                            borderColor: sex === s ? 'rgba(83, 205, 205,0.5)' : 'rgba(255,255,255,0.06)',
+                            background: sex === s ? 'rgba(83, 205, 205,0.12)' : 'rgba(255,255,255,0.04)',
+                            color: sex === s ? '#53cdcd' : 'rgba(255,255,255,0.4)',
                           }}
                         >{s}</motion.button>
                       ))}
@@ -342,8 +342,8 @@ export default function RegisterPage() {
                       onClick={() => setAgreed(!agreed)}
                       className="mt-0.5 w-5 h-5 rounded-md border-2 flex items-center justify-center flex-shrink-0 transition-all duration-200"
                       style={{
-                        borderColor: agreed ? '#10b981' : 'rgba(255,255,255,0.15)',
-                        backgroundColor: agreed ? 'rgba(16,185,129,0.2)' : 'transparent',
+                        borderColor: agreed ? '#29b5b5' : 'rgba(255,255,255,0.15)',
+                        backgroundColor: agreed ? 'rgba(41, 181, 181,0.2)' : 'transparent',
                       }}
                     >
                       <AnimatePresence>
@@ -396,7 +396,7 @@ export default function RegisterPage() {
                     (step === 2 && !agreed)
                   }
                   className="relative w-full overflow-hidden rounded-2xl py-4 text-sm font-black uppercase tracking-[0.18em] text-white shadow-xl disabled:opacity-40 disabled:cursor-not-allowed"
-                  style={{ background: 'linear-gradient(135deg, #065f46 0%, #10b981 60%, #34d399 100%)' }}
+                  style={{ background: 'linear-gradient(135deg, #1b8b8b 0%, #29b5b5 60%, #53cdcd 100%)' }}
                 >
                   {/* Shimmer */}
                   <motion.div

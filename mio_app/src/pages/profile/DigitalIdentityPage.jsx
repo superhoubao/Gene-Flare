@@ -110,7 +110,7 @@ export default function DigitalIdentityPage() {
           
           <div className="space-y-4">
             <div className="flex items-start gap-4">
-              <div className="mt-1 h-2 w-2 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.5)]" />
+              <div className="mt-1 h-2 w-2 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(41, 181, 181,0.5)]" />
               <div>
                 <p className="text-[11px] font-black text-emerald-900 uppercase tracking-tight">
                   {language === 'zh' ? '生物特征一致性 (40%)' : 'Biological Integrity (40%)'}
@@ -122,7 +122,7 @@ export default function DigitalIdentityPage() {
             </div>
 
             <div className="flex items-start gap-4">
-              <div className="mt-1 h-2 w-2 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.5)]" />
+              <div className="mt-1 h-2 w-2 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(41, 181, 181,0.5)]" />
               <div>
                 <p className="text-[11px] font-black text-emerald-900 uppercase tracking-tight">
                   {language === 'zh' ? '数据贡献质量 (50%)' : 'Data Contribution Quality (50%)'}
@@ -134,7 +134,7 @@ export default function DigitalIdentityPage() {
             </div>
 
             <div className="flex items-start gap-4">
-              <div className="mt-1 h-2 w-2 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.5)]" />
+              <div className="mt-1 h-2 w-2 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(41, 181, 181,0.5)]" />
               <div>
                 <p className="text-[11px] font-black text-emerald-900 uppercase tracking-tight">
                   {language === 'zh' ? '网络治理贡献 (10%)' : 'Eco-System Participation (10%)'}

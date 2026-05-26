@@ -80,7 +80,7 @@ export default function FirstMint({ sparkBalance, onNext }) {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3 }}
-              className="relative aspect-[3/4] w-full rounded-3xl bg-gradient-to-br from-[#064e3b] via-emerald-950 to-[#04120d] p-6 border border-white/15 overflow-hidden shadow-2xl"
+              className="relative aspect-[3/4] w-full rounded-3xl bg-gradient-to-br from-[#0a3d3d] via-emerald-950 to-[#04120d] p-6 border border-white/15 overflow-hidden shadow-2xl"
             >
               {/* Metallic sheen */}
               <motion.div
@@ -262,7 +262,7 @@ export default function FirstMint({ sparkBalance, onNext }) {
               whileTap={{ scale: 0.98 }}
               onClick={onNext}
               className="w-full rounded-2xl py-4 text-sm font-black uppercase tracking-[0.18em] text-white shadow-xl"
-              style={{ background: 'linear-gradient(135deg, #065f46 0%, #10b981 60%, #34d399 100%)' }}
+              style={{ background: 'linear-gradient(135deg, #1b8b8b 0%, #29b5b5 60%, #53cdcd 100%)' }}
             >
               <span className="flex items-center justify-center gap-2">
                 Continue
