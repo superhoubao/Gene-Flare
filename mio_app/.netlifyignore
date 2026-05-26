@@ -1,0 +1,10 @@
+node_modules/
+dist/
+dist-ssr/
+.netlify/
+.vite/
+coverage/
+*.log
+.env
+.env.*
+!.env.example
