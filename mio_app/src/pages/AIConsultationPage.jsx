@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { useLanguage } from '../components/utils/LanguageContext';
 
 /**
@@ -11,6 +11,7 @@ import { useLanguage } from '../components/utils/LanguageContext';
 
 export default function AIConsultationPage() {
   const { t } = useLanguage();
+  const location = useLocation();
 
   const QUICK_ACTIONS = [
     { id: 'checkin', icon: 'check_circle', label: t('quickActions.healthCheckin'), spark: '+15 SPARK', color: 'bg-primary', text: t('ai.checkinText') },
@@ -43,6 +44,17 @@ export default function AIConsultationPage() {
   const messagesEndRef = useRef(null);
   const navigate = useNavigate();
 
+  // 自动填充并发送来自外部链接（如缺失信号）携带的初始诊断问题
+  useEffect(() => {
+    if (location.state?.initialQuery) {
+      const q = location.state.initialQuery;
+      const timer = setTimeout(() => {
+        handleSend(q);
+      }, 600);
+      return () => clearTimeout(timer);
+    }
+  }, [location.state]);
+
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   };
@@ -71,7 +83,14 @@ export default function AIConsultationPage() {
       let aiResponseContent = t('ai.respDefault');
       
       const lowerText = text.toLowerCase();
-      if (lowerText.includes('report') || lowerText.includes('interpret') || lowerText.includes('解读') || lowerText.includes('报告')) {
+      const language = localStorage.getItem('language') || 'zh';
+
+      if (lowerText.includes('assessment') || lowerText.includes('评估')) {
+        aiResponseContent = language === 'zh' 
+          ? '🧬 【MIO 创世深度健康评估】启动成功！零知识加密引擎已完成多维体征核算。您目前的细胞活力指数为 92，长寿基因活跃度 87%。根据您的 Genius Ring 智能指环实时心率变异性(HRV)，已自动为您解锁计划中心的个性化健康日常协议。评估任务已确权，+200 Spark 创世大奖已存入您的隐私盾牌！' 
+          : '🧬 [MIO Genesis Deep Health Assessment] completed successfully! Telemetry scan active. Longevity index: 92, custom plans unlocked. +200 Spark genesis reward secured in your privacy shield!';
+        localStorage.setItem('isDeepAssessed', 'true');
+      } else if (lowerText.includes('report') || lowerText.includes('interpret') || lowerText.includes('解读') || lowerText.includes('报告')) {
         aiResponseContent = t('ai.respUpload');
       } else if (lowerText.includes('check-in') || lowerText.includes('feeling') || lowerText.includes('打卡') || lowerText.includes('健康')) {
         aiResponseContent = t('ai.respCheckin');

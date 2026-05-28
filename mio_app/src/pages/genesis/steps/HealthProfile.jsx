@@ -83,6 +83,11 @@ export default function HealthProfile({ onNext }) {
     weight: 65
   });
 
+  const handleNext = () => {
+    localStorage.setItem('tutorialCompleted', 'true');
+    onNext();
+  };
+
   const handleChange = (field, value) => {
     setProfile(prev => ({ ...prev, [field]: value }));
   };
@@ -162,7 +167,7 @@ export default function HealthProfile({ onNext }) {
         <motion.button
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
-          onClick={onNext}
+          onClick={handleNext}
           className="w-full py-4 rounded-2xl bg-gradient-to-r from-emerald-600 to-teal-500 text-white text-sm font-black uppercase tracking-[0.2em] shadow-lg shadow-emerald-900/20"
         >
           Confirm Metrics

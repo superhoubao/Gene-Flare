@@ -17,6 +17,11 @@ export default function FirstMint({ sparkBalance, onNext }) {
     setPhase('minting');
   };
 
+  const handleNext = () => {
+    localStorage.setItem('nft_minted', 'true');
+    onNext();
+  };
+
   useEffect(() => {
     if (phase !== 'minting') return;
     const timer = setInterval(() => {
@@ -260,7 +265,7 @@ export default function FirstMint({ sparkBalance, onNext }) {
               transition={{ delay: 0.5 }}
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
-              onClick={onNext}
+              onClick={handleNext}
               className="w-full rounded-2xl py-4 text-sm font-black uppercase tracking-[0.18em] text-white shadow-xl"
               style={{ background: 'linear-gradient(135deg, #1b8b8b 0%, #29b5b5 60%, #53cdcd 100%)' }}
             >

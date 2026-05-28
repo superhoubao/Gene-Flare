@@ -1,11 +1,15 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useLanguage } from '../../../components/utils/LanguageContext';
 
 /**
  * Step 0.5: Identity Activation (DID Generation)
  * High-fidelity biometric scan simulation with Web3 Wallet integration.
  */
 export default function ActivateDID({ onNext }) {
+  const { lang } = useLanguage();
+  const isZh = lang === 'zh';
+
   // Status flow: 'ready' -> 'connecting' -> 'signing' -> 'scanning' -> 'verifying' -> 'completed'
   const [status, setStatus] = useState('ready'); 
   const [progress, setProgress] = useState(0);
@@ -21,6 +25,11 @@ export default function ActivateDID({ onNext }) {
     { id: 'okx', name: 'OKX Wallet', icon: '⬛', color: 'from-gray-800 to-black' },
     { id: 'walletconnect', name: 'WalletConnect', icon: '🔗', color: 'from-blue-500 to-blue-600' }
   ];
+
+  const handleSkip = () => {
+    localStorage.setItem('did_verified', 'false');
+    onNext();
+  };
 
   const handleWalletSelect = (wallet) => {
     setSelectedWallet(wallet);
@@ -57,7 +66,20 @@ export default function ActivateDID({ onNext }) {
       exit={{ opacity: 0 }}
       className="flex flex-col items-center justify-center min-h-screen px-6 py-12 relative"
     >
-      <div className="mb-12 text-center relative z-10">
+      {/* Skip Button in Top-Right Corner */}
+      {(status === 'ready' || status === 'connecting' || status === 'signing') && (
+        <motion.button
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          whileHover={{ opacity: 1, y: -1 }}
+          onClick={handleSkip}
+          className="absolute top-8 right-6 z-20 text-xs font-black uppercase tracking-widest text-white/40 hover:text-white/85 bg-white/5 border border-white/5 rounded-full px-4 py-2 backdrop-blur-md transition-all cursor-pointer"
+        >
+          {isZh ? '跳过 ➔' : 'Skip ➔'}
+        </motion.button>
+      )}
+
+      <div className="mb-12 text-center relative z-10 pr-14">
         <h2 className="text-2xl font-black text-white mb-2">Identity Activation</h2>
         <p className="text-sm text-white/40">Secure your decentralized identity on the Flare network.</p>
       </div>
@@ -128,6 +150,16 @@ export default function ActivateDID({ onNext }) {
                         <span className="font-bold text-white text-sm">{w.name}</span>
                       </motion.button>
                     ))}
+
+                    {/* Ghost Skip Button */}
+                    <motion.button
+                      whileHover={{ scale: 1.02, backgroundColor: 'rgba(255,255,255,0.06)' }}
+                      whileTap={{ scale: 0.98 }}
+                      onClick={handleSkip}
+                      className="mt-2 w-full py-3 rounded-xl border border-white/10 bg-transparent text-white/40 hover:text-white/80 text-xs font-black uppercase tracking-widest transition-all cursor-pointer text-center"
+                    >
+                      {isZh ? '暂不激活，直接跳过 ➔' : 'Skip & Continue ➔'}
+                    </motion.button>
                   </div>
                 )}
                 

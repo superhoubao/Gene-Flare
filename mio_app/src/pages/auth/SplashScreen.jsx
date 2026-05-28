@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 
 /* ─── Gene Network Background (Refined & Minimal) ──────────────── */
-function GeneNetwork() {
+export function GeneNetwork() {
   const canvasRef = useRef(null);
 
   useEffect(() => {
@@ -107,7 +107,7 @@ function GeneNetwork() {
 }
 
 /* ─── Particle Field ───────────────────────────────────────────── */
-function ParticleField({ count = 60 }) {
+export function ParticleField({ count = 60 }) {
   const particles = Array.from({ length: count }, (_, i) => ({
     id: i,
     x: Math.random() * 100,
@@ -142,7 +142,7 @@ function ParticleField({ count = 60 }) {
 }
 
 /* ─── Aurora Orbs ──────────────────────────────────────────────── */
-function AuroraOrbs() {
+export function AuroraOrbs() {
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none">
       {/* Top-left emerald orb */}

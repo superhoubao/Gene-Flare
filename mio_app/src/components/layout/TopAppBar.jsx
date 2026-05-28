@@ -51,12 +51,12 @@ export default function TopAppBar({
         {rightIcon ? (
           <button 
             onClick={onRightClick}
-            className={`flex h-11 w-11 items-center justify-center rounded-2xl ${transparent ? 'bg-white/20 backdrop-blur-md' : 'bg-white/55 shadow-[0_12px_24px_-18px_rgba(0,80,46,0.3)]'}`}
+            className={`flex h-9 w-9 items-center justify-center rounded-full transition-colors ${transparent ? 'bg-white/5 hover:bg-white/15 backdrop-blur-sm text-white/60 hover:text-white' : 'bg-surface-container-lowest hover:bg-surface-container-low text-on-surface-variant hover:text-on-surface border border-outline-variant/10'}`}
           >
-            <span className={`material-symbols-outlined ${transparent ? 'text-white' : 'text-on-surface'}`}>{rightIcon}</span>
+            <span className="material-symbols-outlined text-[18px]">{rightIcon}</span>
           </button>
         ) : (
-          <div className="h-11 w-11" />
+          <div className="h-9 w-9" />
         )}
       </div>
     </header>

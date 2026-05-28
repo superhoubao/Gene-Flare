@@ -33,22 +33,26 @@ export default function Modal({
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.9, y: 20 }}
             transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-            className="relative w-full max-w-sm overflow-hidden rounded-[2rem] border border-white/10 bg-[#02150d]/90 p-8 shadow-[0_20px_50px_rgba(0,0,0,0.5)] backdrop-blur-2xl"
+            className="relative w-full max-w-sm overflow-hidden rounded-[2rem] bg-surface-container-lowest p-8 tonal-elevation-2 border border-outline-variant/20"
           >
             {/* Glossy edge effect */}
-            <div className="absolute inset-0 pointer-events-none bg-gradient-to-br from-white/5 to-transparent" />
+            <div className="absolute inset-0 pointer-events-none bg-gradient-to-br from-surface-bright/50 to-transparent" />
 
             <div className="relative text-center space-y-6">
               {/* Icon / Decorative element */}
-              <div className="mx-auto w-16 h-16 rounded-full bg-emerald-500/10 flex items-center justify-center border border-emerald-500/20">
-                <span className="material-symbols-outlined text-emerald-400 text-3xl" style={{ fontFamily: "'Material Symbols Outlined'" }}>
+              <div className={`mx-auto w-16 h-16 rounded-full flex items-center justify-center border ${
+                type === 'danger' 
+                  ? 'bg-error-container border-error/20 text-on-error-container' 
+                  : 'bg-primary-container border-primary/20 text-on-primary-container'
+              }`}>
+                <span className="material-symbols-outlined text-3xl" style={{ fontFamily: "'Material Symbols Outlined'" }}>
                   {type === 'danger' ? 'logout' : 'info'}
                 </span>
               </div>
 
               <div className="space-y-2">
-                <h3 className="text-xl font-black tracking-tight text-white">{title}</h3>
-                <p className="text-sm font-medium text-white/40 leading-relaxed">
+                <h3 className="text-xl font-black tracking-tight text-on-surface">{title}</h3>
+                <p className="text-sm font-medium text-on-surface-variant leading-relaxed">
                   {message}
                 </p>
               </div>
@@ -58,10 +62,10 @@ export default function Modal({
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                   onClick={onConfirm}
-                  className={`w-full py-4 rounded-2xl text-sm font-black uppercase tracking-widest text-white shadow-lg ${
+                  className={`w-full py-4 rounded-2xl text-sm font-black uppercase tracking-widest shadow-lg border transition-all ${
                     type === 'danger' 
-                      ? 'bg-gradient-to-r from-red-600 to-rose-500' 
-                      : 'bg-gradient-to-r from-emerald-600 to-teal-500'
+                      ? 'bg-error text-on-error border-error/10 hover:opacity-90' 
+                      : 'bg-primary text-on-primary border-primary/10 hover:opacity-90'
                   }`}
                 >
                   {confirmText}
@@ -69,7 +73,7 @@ export default function Modal({
                 
                 <button
                   onClick={onClose}
-                  className="w-full py-4 rounded-2xl text-sm font-bold uppercase tracking-widest text-white/20 hover:text-white/40 transition-colors"
+                  className="w-full py-4 rounded-2xl text-sm font-bold uppercase tracking-widest text-on-surface-variant hover:text-on-surface transition-colors"
                 >
                   {cancelText}
                 </button>

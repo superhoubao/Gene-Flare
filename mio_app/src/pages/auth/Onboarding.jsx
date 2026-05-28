@@ -53,7 +53,14 @@ export default function Onboarding() {
 
   const finishOnboarding = () => {
     localStorage.setItem('hasSeenOnboarding', 'true');
-    navigate('/login');
+    localStorage.setItem('tutorialCompleted', 'true');
+    // 如果已经绑定过DID（说明不是首次启动，而是从首页任务链重新进来的），直接跳转回首页
+    const isLogged = localStorage.getItem('did_verified') !== null;
+    if (isLogged) {
+      navigate('/');
+    } else {
+      navigate('/login');
+    }
   };
 
   const variants = {

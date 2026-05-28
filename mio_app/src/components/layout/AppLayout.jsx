@@ -3,6 +3,7 @@ import { Outlet, useLocation } from 'react-router-dom';
 import BottomNavBar from './BottomNavBar';
 import QuickActions from '../../pages/QuickActions';
 import AIConsultationFAB from './AIConsultationFAB';
+import DebugControlBall from './DebugControlBall';
 
 export default function AppLayout() {
   const [showQuickActions, setShowQuickActions] = useState(false);
@@ -22,6 +23,9 @@ export default function AppLayout() {
           <AIConsultationFAB />
         </>
       )}
+
+      {/* 右上角全局状态演化调试球 */}
+      <DebugControlBall />
 
       {/* 弹窗抽屉的基于 Framer Motion 动画 */}
       <QuickActions isOpen={showQuickActions} onClose={() => setShowQuickActions(false)} />

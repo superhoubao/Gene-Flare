@@ -1,18 +1,38 @@
 import { useNavigate } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
+import { useState } from 'react';
 import TopAppBar from '../../components/layout/TopAppBar';
 import avatarBoy from '../../assets/avatar_boy_v2.png';
 import { PageTransition } from '../../components/animations/PageTransition';
 import { useLanguage } from '../../components/utils/LanguageContext';
+import { useDemoState } from '../../components/utils/DemoStateContext';
 
 export default function ProfilePage() {
   const navigate = useNavigate();
-  const { t } = useLanguage();
+  const { t, lang: language } = useLanguage();
+  const [toast, setToast] = useState(null);
+  const { state: demoState } = useDemoState();
+
+  const showToast = (message, duration = 3000) => {
+    setToast(message);
+    setTimeout(() => {
+      setToast(null);
+    }, duration);
+  };
+
+  const handleStakeClick = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    showToast(language === 'zh' ? '正在验证资产主权，前往烈焰之盾质押...' : 'Verifying assets, routing to Flame Shield for staking...');
+    setTimeout(() => {
+      navigate('/shield');
+    }, 1000);
+  };
 
   // Genesis Journey progress
-  const genesisCompleted = localStorage.getItem('genesisCompleted') === 'true';
-  const genesisStep = Number(localStorage.getItem('genesisStep') || 0);
-  const genesisSpark = Number(localStorage.getItem('genesisSpark') || 0);
+  const genesisCompleted = demoState.isGenesisCompleted;
+  const genesisStep = demoState.isGenesisCompleted ? 4 : 1;
+  const genesisSpark = demoState.isGenesisCompleted ? 370 : 70;
   const showGenesisCard = !genesisCompleted;
 
   return (
@@ -117,7 +137,7 @@ export default function ProfilePage() {
           {/* SPARK Asset */}
           <motion.div 
             whileHover={{ y: -2 }}
-            className="md:col-span-5 rounded-[32px] bg-[#f4efe4] p-6 shadow-sm relative overflow-hidden"
+            className="md:col-span-5 rounded-[32px] bg-[#f4efe4] p-6 shadow-sm relative overflow-hidden animate-all duration-700"
           >
             <div className="absolute -top-4 -right-4 p-6 opacity-5">
               <span className="material-symbols-outlined text-[100px]">local_fire_department</span>
@@ -125,7 +145,9 @@ export default function ProfilePage() {
             <div className="relative z-10 flex flex-col h-full justify-between min-h-[160px]">
               <div>
                 <p className="text-[10px] font-black uppercase tracking-[0.18em] text-amber-900/50">{t('profilePage.behaviorRewards')}</p>
-                <p className="mt-3 text-[2.5rem] font-black tracking-tight text-slate-900 leading-none">12,350 <span className="text-lg text-slate-500">SPARK</span></p>
+                <p className="mt-3 text-[2.5rem] font-black tracking-tight text-slate-900 leading-none">
+                  {demoState.isGenesisCompleted ? '12,350' : '70'} <span className="text-lg text-slate-500">SPARK</span>
+                </p>
               </div>
               <div className="mt-6 self-start inline-flex items-center gap-1.5 rounded-full bg-white/60 px-3 py-1.5 text-xs font-bold text-slate-700 shadow-sm">
                 <span className="material-symbols-outlined text-[14px] text-emerald-600">trending_up</span>
@@ -137,7 +159,7 @@ export default function ProfilePage() {
           {/* GEF Asset */}
           <motion.div 
             whileHover={{ y: -2 }}
-            className="md:col-span-7 rounded-[32px] bg-[linear-gradient(145deg,#0b1510_0%,#173d2a_100%)] p-6 text-white shadow-lg relative overflow-hidden"
+            className="md:col-span-7 rounded-[32px] bg-[linear-gradient(145deg,#0b1510_0%,#173d2a_100%)] p-6 text-white shadow-lg relative overflow-hidden animate-all duration-700"
           >
             <div className="absolute -right-4 -bottom-8 opacity-10">
               <span className="material-symbols-outlined text-[140px]">workspace_premium</span>
@@ -145,11 +167,16 @@ export default function ProfilePage() {
             <div className="relative z-10 flex flex-col h-full justify-between min-h-[160px]">
               <div>
                 <p className="text-[10px] font-black uppercase tracking-[0.18em] text-emerald-100/60">{t('profilePage.settlementShield')}</p>
-                <p className="mt-3 text-[3rem] font-black tracking-tight leading-none">450 <span className="text-xl text-emerald-200/70">GEF</span></p>
+                <p className="mt-3 text-[3rem] font-black tracking-tight leading-none">
+                  {demoState.isGenesisCompleted ? '450' : '0'} <span className="text-xl text-emerald-200/70">GEF</span>
+                </p>
               </div>
               <div className="mt-6 flex flex-wrap items-center justify-between gap-4">
                 <p className="text-sm text-emerald-100/80 max-w-[22ch] leading-relaxed">{t('profilePage.gefDesc')}</p>
-                <button className="rounded-full bg-white text-[#0b1510] px-5 py-2.5 text-[11px] font-black uppercase tracking-[0.16em] hover:bg-emerald-50 transition-colors shadow-md">
+                <button 
+                  onClick={handleStakeClick}
+                  className="rounded-full bg-white text-[#0b1510] px-5 py-2.5 text-[11px] font-black uppercase tracking-[0.16em] hover:bg-emerald-50 active:scale-95 transition-all shadow-md cursor-pointer"
+                >
                   {t('profilePage.stakeGef')}
                 </button>
               </div>
@@ -181,10 +208,11 @@ export default function ProfilePage() {
           {/* Authorization Center */}
           <motion.div 
             whileHover={{ y: -2 }}
-            className="md:col-span-7 rounded-[32px] bg-white p-6 shadow-[0_16px_40px_-8px_rgba(0,80,46,0.06)] border border-emerald-900/5 flex flex-col sm:flex-row gap-6 items-start sm:items-center justify-between"
+            onClick={() => navigate('/profile/privacy')}
+            className="md:col-span-7 rounded-[32px] bg-white p-6 shadow-[0_16px_40px_-8px_rgba(0,80,46,0.06)] border border-emerald-900/5 flex flex-col sm:flex-row gap-6 items-start sm:items-center justify-between cursor-pointer group hover:border-emerald-300 transition-all"
           >
             <div className="flex-1">
-              <div className="w-12 h-12 rounded-full bg-rose-50 text-rose-500 grid place-items-center mb-5">
+              <div className="w-12 h-12 rounded-full bg-rose-50 text-rose-500 grid place-items-center mb-5 group-hover:scale-110 transition-transform">
                 <span className="material-symbols-outlined">key</span>
               </div>
               <h3 className="text-[1.35rem] font-black tracking-tight text-slate-900">{t('profilePage.authorizationCenter')}</h3>
@@ -192,8 +220,8 @@ export default function ProfilePage() {
                 {t('profilePage.authorizationDesc')}
               </p>
             </div>
-            <button className="shrink-0 w-12 h-12 rounded-full bg-slate-50 grid place-items-center text-slate-600 hover:bg-primary hover:text-white transition-all shadow-sm">
-              <span className="material-symbols-outlined text-[20px]">arrow_forward</span>
+            <button className="shrink-0 w-12 h-12 rounded-full bg-slate-50 grid place-items-center text-slate-600 group-hover:bg-primary group-hover:text-white transition-all shadow-sm">
+              <span className="material-symbols-outlined text-[20px] group-hover:translate-x-0.5 transition-transform">arrow_forward</span>
             </button>
           </motion.div>
         </section>
@@ -226,6 +254,23 @@ export default function ProfilePage() {
         </section>
 
       </main>
+
+      {/* Dynamic Immersive Toast */}
+      <AnimatePresence>
+        {toast && (
+          <motion.div
+            initial={{ opacity: 0, y: 50, scale: 0.9 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 20, scale: 0.9 }}
+            className="fixed bottom-24 left-6 right-6 z-[9999] mx-auto max-w-sm rounded-2xl bg-slate-900/90 text-white border border-white/10 px-5 py-4 shadow-2xl backdrop-blur-md flex items-center gap-3"
+          >
+            <div className="w-5 h-5 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center shrink-0">
+              <span className="material-symbols-outlined text-xs animate-spin" style={{ fontFamily: "'Material Symbols Outlined'" }}>sync</span>
+            </div>
+            <p className="text-xs font-black tracking-wide text-white/90">{toast}</p>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </PageTransition>
   );
 }

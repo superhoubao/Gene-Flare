@@ -37,6 +37,16 @@ export default function ConnectHealth({ onNext, onSkip }) {
   const [connected, setConnected] = useState({});
   const [syncing, setSyncing] = useState(null);
 
+  const handleNext = () => {
+    localStorage.setItem('device_connected', 'true');
+    onNext();
+  };
+
+  const handleSkip = () => {
+    localStorage.setItem('device_connected', 'true');
+    onSkip();
+  };
+
   const handleConnect = (sourceId) => {
     if (connected[sourceId] || syncing) return;
     setSyncing(sourceId);
@@ -183,7 +193,7 @@ export default function ConnectHealth({ onNext, onSkip }) {
         <motion.button
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
-          onClick={onNext}
+          onClick={handleNext}
           disabled={connectedCount === 0 && !syncing}
           className="relative w-full overflow-hidden rounded-2xl py-4 text-sm font-black uppercase tracking-[0.18em] text-white shadow-xl disabled:opacity-40 disabled:cursor-not-allowed"
           style={{ background: connectedCount > 0 ? 'linear-gradient(135deg, #1b8b8b 0%, #29b5b5 60%, #53cdcd 100%)' : 'rgba(255,255,255,0.08)' }}
@@ -195,7 +205,7 @@ export default function ConnectHealth({ onNext, onSkip }) {
         </motion.button>
 
         <button
-          onClick={onSkip}
+          onClick={handleSkip}
           className="w-full text-center text-xs font-bold text-white/20 hover:text-white/40 transition-colors tracking-wider py-2"
         >
           Skip this step →

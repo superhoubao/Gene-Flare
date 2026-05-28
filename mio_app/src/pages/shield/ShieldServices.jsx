@@ -45,7 +45,7 @@ export default function ShieldServices() {
   ];
 
   return (
-    <div className="space-y-6 -mx-6 px-6 pt-2 pb-8 bg-[#f8faff] min-h-screen">
+    <div className="space-y-6 -mx-6 px-6 pt-2 pb-8 min-h-screen">
       {/* Hero Header */}
       <div className="relative overflow-hidden rounded-[38px] bg-gradient-to-br from-[#1a1610] to-black p-8 text-white shadow-xl">
         <div className="absolute inset-0 opacity-20 bg-[url('https://images.unsplash.com/photo-1631549916768-4119b2e5f926?auto=format&fit=crop&w=1200&q=80')] bg-cover bg-center mix-blend-overlay"></div>

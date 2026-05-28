@@ -218,16 +218,50 @@ export const institutionPlanCards = [
   },
 ];
 
-export const executingPlans = planCatalog.filter((plan) => plan.status === 'executing');
-export const recommendedPlans = planCatalog.filter((plan) => plan.status === 'recommended');
+export const executingPlans = [];
+export const recommendedPlans = [];
 export const institutionPlans = planCatalog.filter((plan) => plan.sourceType === 'institution');
 
-export const homepagePrimaryPlan = executingPlans[0];
-export const homepageRecommendedPlans = recommendedPlans.slice(0, 2);
-export const personalTaskQueue = executingPlans.flatMap((plan) => plan.tasks ?? []);
+export const homepageRecommendedPlans = [];
+export const personalTaskQueue = [];
 export const researchSignals = institutionPlans
   .filter((plan) => plan.featuredTask)
   .map((plan) => plan.featuredTask);
+
+export function syncPlansState() {
+  let hasActivePlans = false;
+  try {
+    const saved = localStorage.getItem('mio_demo_state');
+    if (saved) {
+      hasActivePlans = JSON.parse(saved).hasActivePlans;
+    } else {
+      hasActivePlans = localStorage.getItem('firstPlanActivated') === 'true';
+    }
+  } catch (e) {
+    hasActivePlans = localStorage.getItem('firstPlanActivated') === 'true';
+  }
+
+  // 动态修改状态
+  planCatalog.forEach((plan) => {
+    if (plan.id === 'sleep-repair-protocol' || plan.id === 'cardio-recovery-loop') {
+      plan.status = hasActivePlans ? 'executing' : 'recommended';
+    }
+  });
+
+  // 清空并就地同步，以保持导出数组引用不变！
+  const currentExecuting = planCatalog.filter((plan) => plan.status === 'executing');
+  const currentRecommended = planCatalog.filter((plan) => plan.status === 'recommended');
+
+  executingPlans.splice(0, executingPlans.length, ...currentExecuting);
+  recommendedPlans.splice(0, recommendedPlans.length, ...currentRecommended);
+  
+  homepageRecommendedPlans.splice(0, homepageRecommendedPlans.length, ...recommendedPlans.slice(0, 2));
+  personalTaskQueue.splice(0, personalTaskQueue.length, ...executingPlans.flatMap((plan) => plan.tasks ?? []));
+}
+
+// 初始化执行一次
+syncPlansState();
+
 
 export const planTaskQueue = [
   {

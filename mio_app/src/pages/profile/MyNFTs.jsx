@@ -5,24 +5,53 @@ import { PageTransition } from '../../components/animations/PageTransition';
 import { useLanguage } from '../../components/utils/LanguageContext';
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useDemoState } from '../../components/utils/DemoStateContext';
 
 export default function MyNFTs() {
   const { t, lang: language } = useLanguage();
   const navigate = useNavigate();
   const [selectedPack, setSelectedPack] = useState(null);
-  const [isDidVerified, setIsDidVerified] = useState(localStorage.getItem('did_verified') === 'true');
+  const { state: demoState } = useDemoState();
+  const isDidVerified = demoState.isDidVerified;
   const [mintedPacks] = useState([]);
   const [activeInfo, setActiveInfo] = useState(null); // 'waterfall' or 'faq'
+  const [toast, setToast] = useState(null);
 
-  // Sync state from localStorage
-  useEffect(() => {
-    const handleStorageChange = () => {
-      setIsDidVerified(localStorage.getItem('did_verified') === 'true');
-    };
-    window.addEventListener('storage', handleStorageChange);
-    handleStorageChange();
-    return () => window.removeEventListener('storage', handleStorageChange);
-  }, []);
+  const showToast = (message, duration = 3000) => {
+    setToast(message);
+    setTimeout(() => {
+      setToast(null);
+    }, duration);
+  };
+
+  const handleSignalClick = (signalKey, signalName) => {
+    if (signalKey === 'sleepArchitecture') {
+      showToast(language === 'zh' ? `正在为您对接「睡眠改善计划」...` : `Routing to Sleep Repair Protocol...`);
+      setTimeout(() => {
+        navigate('/health-plan');
+      }, 1000);
+    } else if (signalKey === 'bloodBiomarkers') {
+      showToast(language === 'zh' ? `正在前往「健康评分与生物标志物分析」...` : `Opening Biomarker Analysis...`);
+      setTimeout(() => {
+        navigate('/health-score');
+      }, 1000);
+    } else if (signalKey === 'genotypePanel' || signalKey === 'familyHistory') {
+      showToast(language === 'zh' ? `正在为您连线 MIO AI 专属医疗助理以进行录入...` : `Connecting with MIO AI Consultant...`);
+      setTimeout(() => {
+        navigate('/ai-consultation', { 
+          state: { 
+            initialQuery: signalKey === 'familyHistory' 
+              ? '我想上传我的家族病史并进行零知识资产打包' 
+              : '我想录入并分析我的基因检测面板数据' 
+          } 
+        });
+      }, 1200);
+    } else {
+      showToast(language === 'zh' ? `正在前往补全 ${signalName}...` : `Navigating to complete ${signalName}...`);
+    }
+  };
+
+  // Global state sync is handled by DemoStateContext
 
   const rewardStages = [
     {
@@ -249,19 +278,19 @@ export default function MyNFTs() {
                 {t('researchPage.desc')}
               </p>
 
-              <div className="mt-7 flex flex-wrap gap-3">
+              <div className="mt-7 flex flex-row items-center gap-3 w-full sm:w-auto flex-nowrap">
                 <button 
                   onClick={() => {
                     const el = document.getElementById('inventory-section');
                     if (el) el.scrollIntoView({ behavior: 'smooth' });
                   }}
-                  className="rounded-full bg-white px-6 py-3 text-sm font-black uppercase tracking-[0.16em] text-primary shadow-lg active:scale-95 transition-all"
+                  className="rounded-full bg-white px-4 sm:px-6 py-3 text-xs sm:text-sm font-black uppercase tracking-[0.16em] text-primary shadow-lg active:scale-95 transition-all flex-1 sm:flex-initial text-center whitespace-nowrap"
                 >
                   {t('researchPage.mintNFT')}
                 </button>
                 <button 
                   onClick={() => navigate('/profile/did')}
-                  className="rounded-full border border-white/15 bg-white/10 px-6 py-3 text-sm font-black uppercase tracking-[0.16em] text-white"
+                  className="rounded-full border border-white/15 bg-white/10 px-4 sm:px-6 py-3 text-xs sm:text-sm font-black uppercase tracking-[0.16em] text-white flex-1 sm:flex-initial text-center whitespace-nowrap"
                 >
                   {t('researchPage.reviewDID')}
                 </button>
@@ -378,15 +407,21 @@ export default function MyNFTs() {
                         
                         <div className="grid grid-cols-2 gap-2 sm:flex sm:flex-wrap">
                           {[
-                            t('home.missingSignals.familyHistory'),
-                            t('home.missingSignals.genotypePanel'),
-                            t('home.missingSignals.bloodBiomarkers'),
-                            t('home.missingSignals.sleepArchitecture')
-                          ].map((signal) => (
-                            <div key={signal} className="flex items-center gap-1.5 rounded-full bg-slate-50 border border-slate-100 px-3 py-2 text-[10px] font-bold text-slate-600">
+                            { key: 'familyHistory', name: t('home.missingSignals.familyHistory') },
+                            { key: 'genotypePanel', name: t('home.missingSignals.genotypePanel') },
+                            { key: 'bloodBiomarkers', name: t('home.missingSignals.bloodBiomarkers') },
+                            { key: 'sleepArchitecture', name: t('home.missingSignals.sleepArchitecture') }
+                          ].map((item) => (
+                            <motion.div 
+                              key={item.key}
+                              whileHover={{ scale: 1.05, y: -1 }}
+                              whileTap={{ scale: 0.95 }}
+                              onClick={() => handleSignalClick(item.key, item.name)}
+                              className="flex items-center gap-1.5 rounded-full bg-slate-50 border border-slate-100 hover:border-emerald-300 hover:bg-emerald-50/20 px-3 py-2 text-[10px] font-bold text-slate-600 cursor-pointer transition-all shrink-0 sm:shrink"
+                            >
                               <span className="material-symbols-outlined text-[14px] text-emerald-500">add_circle</span>
-                              <span className="truncate">{signal}</span>
-                            </div>
+                              <span className="truncate">{item.name}</span>
+                            </motion.div>
                           ))}
                         </div>
                       </div>
@@ -397,14 +432,20 @@ export default function MyNFTs() {
                 <div className="grid gap-4 mt-8">
                   {nftPacks.map((pack) => {
                     const isMinted = mintedPacks.includes(pack.id);
+                    const isLocked = !demoState.isGenesisCompleted;
                     return (
-                      <article key={pack.id} className="group rounded-[30px] border border-slate-200 bg-white transition-all hover:shadow-xl hover:border-emerald-200/50">
+                      <article key={pack.id} className={`group rounded-[30px] border border-slate-200 bg-white transition-all hover:shadow-xl hover:border-emerald-200/50 relative overflow-hidden ${isLocked ? 'opacity-70 grayscale-[30%]' : ''}`}>
+                        {isLocked && (
+                          <div className="absolute top-4 right-4 z-20 flex h-7 w-7 items-center justify-center rounded-full bg-slate-900/80 text-amber-400 border border-amber-400/20 shadow-md">
+                            <span className="material-symbols-outlined text-[15px]" style={{ fontFamily: "'Material Symbols Outlined'" }}>lock</span>
+                          </div>
+                        )}
                         <div className="flex flex-col lg:flex-row">
                           <div className="flex-1 bg-slate-50 p-6 lg:p-10 rounded-t-[30px] lg:rounded-tr-none lg:rounded-l-[30px]">
                             <div className="flex flex-wrap items-center gap-2">
                               <span className="rounded-full bg-emerald-100/50 border border-emerald-200/50 px-3 py-1 text-[10px] font-black uppercase tracking-[0.18em] text-emerald-800">{pack.id}</span>
-                              <span className={`rounded-full px-3 py-1 text-[10px] font-black uppercase tracking-[0.18em] ${isMinted ? 'bg-emerald-100 text-emerald-700 font-bold' : (pack.status === 'READY' ? 'bg-amber-100 text-amber-700' : 'bg-slate-200 text-slate-600')}`}>
-                                {isMinted ? (language === 'zh' ? '加速搜索匹配中...' : 'ACCELERATING MATCH...') : pack.status}
+                              <span className={`rounded-full px-3 py-1 text-[10px] font-black uppercase tracking-[0.18em] ${isLocked ? 'bg-slate-200 text-slate-500' : (isMinted ? 'bg-emerald-100 text-emerald-700 font-bold' : (pack.status === 'READY' ? 'bg-amber-100 text-amber-700' : 'bg-slate-200 text-slate-600'))}`}>
+                                {isLocked ? (language === 'zh' ? '创世未通关' : 'LOCKED') : (isMinted ? (language === 'zh' ? '加速搜索匹配中...' : 'ACCELERATING MATCH...') : pack.status)}
                               </span>
                             </div>
                             <h3 className="mt-4 text-[1.6rem] font-black tracking-[-0.04em] leading-[1.1] text-slate-900 group-hover:text-emerald-900 transition-colors">{pack.title}</h3>
@@ -437,13 +478,21 @@ export default function MyNFTs() {
                                   onClick={(e) => {
                                     e.preventDefault();
                                     e.stopPropagation();
+                                    if (isLocked) {
+                                      showToast(language === 'zh' ? '⚠️ 请先通关创世健康资产链的所有任务以解锁铸造主权' : '⚠️ Complete all genesis tasks to unlock research minting.');
+                                      return;
+                                    }
                                     setSelectedPack(pack);
                                   }}
-                                  className="w-full rounded-full vitality-gradient px-5 py-4 text-sm font-black uppercase tracking-[0.16em] text-white shadow-[0_8px_20px_rgba(0,255,127,0.25)] transition-all hover:brightness-110 active:brightness-95 active:scale-95 active:shadow-inner ring-2 ring-white/30 cursor-pointer"
+                                  className={`w-full rounded-full px-5 py-4 text-sm font-black uppercase tracking-[0.16em] text-white shadow-lg transition-all ring-2 ring-white/30 cursor-pointer active:scale-95
+                                    ${isLocked 
+                                      ? 'bg-slate-800 text-slate-500 shadow-none ring-slate-700/50 cursor-not-allowed' 
+                                      : 'vitality-gradient shadow-[0_8px_20px_rgba(0,255,127,0.25)] hover:brightness-110 active:brightness-95 active:shadow-inner'
+                                    }`}
                                 >
                                   <div className="flex items-center justify-center gap-2">
                                     <span className="material-symbols-outlined text-sm">token</span>
-                                    {t('researchPage.mintNow')}
+                                    {isLocked ? (language === 'zh' ? '尚未解锁' : 'LOCKED') : t('researchPage.mintNow')}
                                   </div>
                                 </button>
                               )}
@@ -609,6 +658,23 @@ export default function MyNFTs() {
               </div>
             </motion.div>
           </div>
+        )}
+      </AnimatePresence>
+
+      {/* Dynamic Immersive Toast */}
+      <AnimatePresence>
+        {toast && (
+          <motion.div
+            initial={{ opacity: 0, y: 50, scale: 0.9 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 20, scale: 0.9 }}
+            className="fixed bottom-24 left-6 right-6 z-[9999] mx-auto max-w-sm rounded-2xl bg-slate-900/90 text-white border border-white/10 px-5 py-4 shadow-2xl backdrop-blur-md flex items-center gap-3"
+          >
+            <div className="w-5 h-5 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center shrink-0">
+              <span className="material-symbols-outlined text-xs animate-spin" style={{ fontFamily: "'Material Symbols Outlined'" }}>sync</span>
+            </div>
+            <p className="text-xs font-black tracking-wide text-white/90">{toast}</p>
+          </motion.div>
         )}
       </AnimatePresence>
     </PageTransition>

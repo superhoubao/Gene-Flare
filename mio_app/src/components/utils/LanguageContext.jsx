@@ -8,7 +8,7 @@ const translations = {
     nav: {
       home: 'HOME',
       health: 'HEALTH',
-      research: 'RESEARCH',
+      research: 'MINT',
       shield: 'SHIELD',
       aiAssistant: 'AI ASSISTANT',
       social: 'SOCIAL',
@@ -233,8 +233,8 @@ const translations = {
       },
       healthTasks: {
         sections: {
-          research: 'Research Tasks',
-          personal: 'Personal Task Queue',
+          research: 'Today Research Tasks',
+          personal: 'Today Health Tasks',
         },
         planTitlePrefix: 'Plan: ',
         summaryDesc: 'Expected value accumulated from current executing and institution plans.',
@@ -350,7 +350,7 @@ const translations = {
     },
     researchPage: {
       terminal: 'Mint Terminal',
-      title: 'Mint your health asset into a Research NFT.',
+      title: 'Mint your health asset into an NFT.',
       desc: 'This terminal turns structured health signals into callable research inventory tied to your DID. Minting opens access rewards and long-horizon contribution return flows.',
       researchValue: 'Research value',
       mintReady: 'MINT-READY',
@@ -359,7 +359,7 @@ const translations = {
       returnWaterfall: 'Return Waterfall',
       returnTitle: 'How value moves after mint.',
       inventoryBoard: 'Inventory Board',
-      inventoryTitle: 'Mint-ready Research NFT packs',
+      inventoryTitle: 'Mint-ready NFT packs',
       viewArchive: 'View archive',
       enterVault: 'Enter Vault',
       dataScope: 'Data scope:',
@@ -448,8 +448,8 @@ const translations = {
         load: { label: 'Exercise Load', desc: 'Cardio performance during high intensity' },
         recovery: { label: 'Recovery Index', desc: 'Heart rate drop speed post-exercise' },
       },
-      mintNFT: 'MINT RESEARCH NFT',
-      reviewDID: 'REVIEW MY DID',
+      mintNFT: 'MINT NFT',
+      reviewDID: 'MY IDENTITY PROFILE',
       faq: {
         title: 'Learn more about Research',
         whatIs: {
@@ -1051,7 +1051,7 @@ const translations = {
         },
         researchNFT: {
           tag: '科研 NFT 进度',
-          title: '您的健康数据正在成为可铸造的科研 NFT。',
+          title: '您的健康数据正在成为可铸造的科研 NFT',
           desc: '每日同步正在组装绑定到您 DID 的结构化数据包。该跑道越接近全信号密度，您的铸造定价和池准入资格就越强。',
           mintReadiness: '铸造准备就绪',
           estValue: '预估价值',
@@ -1077,7 +1077,7 @@ const translations = {
           title: '健康计划',
           executingPrefix: '项执行中挑战',
           institutionPrefix: '项机构计划',
-          viewAll: '查看所有计划',
+          viewAll: '查看详细',
           executingTitle: '执行中挑战',
           institutionTitle: '机构计划',
           expectedValue: '预期价值',
@@ -1092,8 +1092,8 @@ const translations = {
       },
       healthTasks: {
         sections: {
-          research: '科研任务',
-          personal: '个人任务队列',
+          research: '今日科研任务',
+          personal: '今日健康任务',
         },
         planTitlePrefix: '所属计划 · ',
         summaryDesc: '当前执行计划与机构计划可累计获得的阶段价值。',
@@ -1161,7 +1161,7 @@ const translations = {
     nav: {
       home: '首页',
       health: '健康',
-      research: '研究',
+      research: '铸造',
       shield: 'Shield',
       aiAssistant: 'AI 助手',
       social: '社交',
@@ -1221,7 +1221,7 @@ const translations = {
     },
     researchPage: {
       terminal: '铸造终端',
-      title: '将你的健康资产铸造为 Research NFT。',
+      title: '将你的健康资产铸造为 NFT。',
       desc: '该终端会把结构化健康信号转化为绑定 DID 的科研可调用资产。铸造后可开启访问奖励与长期贡献回流。',
       researchValue: '科研价值',
       mintReady: '铸造就绪',
@@ -1230,7 +1230,7 @@ const translations = {
       returnWaterfall: '收益瀑布',
       returnTitle: '铸造后价值如何流动。',
       inventoryBoard: '待铸造资产清单',
-      inventoryTitle: '可铸造的 Research NFT 数据包',
+      inventoryTitle: '可铸造的 NFT 数据包',
       viewArchive: '查看归档',
       enterVault: '进入金库',
       dataScope: '数据范围：',
@@ -1319,8 +1319,8 @@ const translations = {
       },
       accelerationTitle: '研究加速中心',
       accelerationDesc: '通过验证 DID 和分享数据，您可以将匹配效率提升 300%。',
-      mintNFT: '铸造 Research NFT',
-      reviewDID: '检查我的 DID',
+      mintNFT: '铸造 NFT',
+      reviewDID: '我的身份档案',
       faq: {
         title: '了解更多科研知识',
         whatIs: {

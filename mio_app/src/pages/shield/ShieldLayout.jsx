@@ -18,12 +18,8 @@ export default function ShieldLayout() {
     <div className="min-h-screen overflow-x-hidden bg-background text-on-surface">
       <TopAppBar 
         avatarSrc={avatarBoy} 
-        title={t('nav.shield')}
       />
       <div className="px-6 pb-2 pt-3">
-        <div className="mb-2">
-          <p className="text-[10px] font-black uppercase tracking-[0.22em] text-primary/45">{t('shieldLayout.tabsLabel')}</p>
-        </div>
         <nav className="runway-tabs flex w-full gap-2 rounded-[24px] bg-surface-container-low/50 p-1.5 backdrop-blur-md">
           {tabs.map((tab) => (
             <NavLink

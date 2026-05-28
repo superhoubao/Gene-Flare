@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import TopAppBar from '../../components/layout/TopAppBar';
 import { useLanguage } from '../../components/utils/LanguageContext';
 import Modal from '../../components/common/Modal';
+import { useDemoState } from '../../components/utils/DemoStateContext';
 
 export default function Settings() {
   const { t, lang, setLang } = useLanguage();
@@ -59,6 +60,8 @@ export default function Settings() {
     { code: 'zh', name: '中文 (简体)' },
   ];
 
+  const { state: demoState, updateState: updateDemoState } = useDemoState();
+
   return (
     <>
       <TopAppBar title={t('settings.title')} showBack rightIcon={null} />
@@ -97,20 +100,60 @@ export default function Settings() {
           </div>
         ))}
 
-        <button 
-          onClick={() => {
-            localStorage.removeItem('genesisCompleted');
-            localStorage.removeItem('genesisStep');
-            localStorage.removeItem('genesisSpark');
-            localStorage.removeItem('genesisSkipped');
-            localStorage.removeItem('did_verified');
-            alert('Genesis status reset. Redirecting...');
-            window.location.href = '/genesis';
-          }}
-          className="w-full py-3 mb-4 text-center text-amber-500 font-semibold text-sm rounded-xl border border-amber-500/20 hover:bg-amber-500/5 active:scale-95 transition-all"
-        >
-          Reset Genesis Journey (Debug)
-        </button>
+        {/* 开发者演示 Preference 分区 ———— 为编程小白特别设计 */}
+        <div className="border-t border-outline-variant/20 pt-6 mt-4">
+          <h3 className="text-xs font-black text-rose-500 uppercase tracking-wider mb-3 px-1">
+            {lang === 'zh' ? '开发者演示工具 (DEV PREFERENCES)' : 'DEVELOPER TOOLS'}
+          </h3>
+          <div className="bg-rose-500/5 rounded-[24px] p-5 border border-rose-500/10 space-y-4">
+            <div className="flex items-center justify-between gap-4">
+              <div className="flex flex-col min-w-0 flex-1">
+                <span className="text-xs font-extrabold text-white">
+                  {lang === 'zh' ? '开启状态切换悬浮调试球' : 'Show MIO Debug Controller'}
+                </span>
+                <span className="text-[10px] text-slate-400 leading-normal mt-1 break-words">
+                  {lang === 'zh' 
+                    ? '激活后，屏幕右上角会常驻 ⚡ 调试球，用于快速对比新手态与主权激活态。' 
+                    : 'Show the Fixed ⚡ terminal button in top right corner for easy state demonstration.'
+                  }
+                </span>
+              </div>
+              <button
+                onClick={() => updateDemoState({ showDebugBall: !demoState.showDebugBall })}
+                className={`relative inline-flex h-6 w-11 shrink-0 items-center rounded-full transition-colors ${
+                  demoState.showDebugBall ? 'bg-rose-500' : 'bg-slate-300'
+                }`}
+              >
+                <span
+                  className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
+                    demoState.showDebugBall ? 'translate-x-6' : 'translate-x-1'
+                  }`}
+                />
+              </button>
+            </div>
+            
+            <button 
+              onClick={() => {
+                updateDemoState({
+                  isGenesisCompleted: false,
+                  hasActivePlans: false,
+                  isDidVerified: false,
+                  showDebugBall: true,
+                });
+                localStorage.removeItem('genesisCompleted');
+                localStorage.removeItem('genesisStep');
+                localStorage.removeItem('genesisSpark');
+                localStorage.removeItem('genesisSkipped');
+                localStorage.removeItem('did_verified');
+                alert('MIO System States & Journey reset successfully!');
+                window.location.href = '/genesis';
+              }}
+              className="w-full py-2.5 text-center text-amber-500 font-extrabold text-xs rounded-xl border border-amber-500/20 hover:bg-amber-500/5 active:scale-95 transition-all"
+            >
+              Reset All States (Debug Journey)
+            </button>
+          </div>
+        </div>
 
         <button
           onClick={() => setIsLogoutModalOpen(true)}
@@ -124,7 +167,18 @@ export default function Settings() {
           onClose={() => setIsLogoutModalOpen(false)}
           onConfirm={() => {
             setIsLogoutModalOpen(false);
-            navigate('/splash');
+            
+            // 清除与登录、创世和引导流程有关的所有本地状态缓存，以便重新体验
+            localStorage.removeItem('did_verified');
+            localStorage.removeItem('hasSeenOnboarding');
+            localStorage.removeItem('tutorialCompleted');
+            localStorage.removeItem('genesisCompleted');
+            localStorage.removeItem('genesisStep');
+            localStorage.removeItem('genesisSpark');
+            localStorage.removeItem('genesisSkipped');
+            
+            // 直接跳转到 App 引导流程页
+            navigate('/onboarding');
           }}
           type="danger"
           title={t('settings.logout')}
