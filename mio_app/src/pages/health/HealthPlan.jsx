@@ -82,7 +82,7 @@ export default function HealthPlan({ isNewUser = false }) {
             {recommendedPlans.map((plan) => (
               <article 
                 key={plan.id} 
-                onClick={() => setSelectedPlan(plan)}
+                onClick={() => navigate('/plan-detail/' + plan.id)}
                 className="flex-shrink-0 w-[280px] rounded-[32px] bg-white p-6 shadow-lg border border-slate-100 cursor-pointer hover:shadow-xl transition-all group"
               >
                 <div className="flex justify-between items-start mb-4">
@@ -108,7 +108,11 @@ export default function HealthPlan({ isNewUser = false }) {
           </div>
           <div className="grid gap-4">
             {institutionPlanCards.map((plan) => (
-              <article key={plan.id} className="group overflow-hidden rounded-[32px] bg-[#f8faf9] border border-slate-200/50">
+              <article 
+                key={plan.id} 
+                onClick={() => navigate('/plan-detail/' + plan.id)}
+                className="group overflow-hidden rounded-[32px] bg-[#f8faf9] border border-slate-200/50 cursor-pointer hover:shadow-xl transition-all"
+              >
                 <div className="flex flex-col md:flex-row">
                   <div className="p-6 flex-1">
                     <span className="text-[9px] font-black uppercase tracking-widest text-primary/60 mb-2 block">{planSource(plan)}</span>

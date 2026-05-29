@@ -126,19 +126,46 @@ export default function Onboarding() {
               animate={{ rotate: 0, scale: 1 }}
               transition={{ delay: 0.2, type: "spring" }}
             >
-              <div className={`absolute inset-0 rounded-[40px] bg-gradient-to-br ${SLIDES[current].gradient} blur-xl opacity-50`} />
-              <div className="absolute inset-0 rounded-[40px] border border-white/10 bg-white/5 backdrop-blur-md" />
-              <span 
-                className="material-symbols-outlined relative z-10"
-                style={{ 
-                  fontSize: 56, 
-                  color: SLIDES[current].color, 
-                  textShadow: `0 0 30px ${SLIDES[current].color}66`,
-                  fontFamily: "'Material Symbols Outlined'"
-                }}
-              >
-                {SLIDES[current].icon}
-              </span>
+              {SLIDES[current].icon !== 'genetics' && (
+                <>
+                  <div className={`absolute inset-0 rounded-[40px] bg-gradient-to-br ${SLIDES[current].gradient} blur-xl opacity-50`} />
+                  <div className="absolute inset-0 rounded-[40px] border border-white/10 bg-white/5 backdrop-blur-md" />
+                </>
+              )}
+              {SLIDES[current].icon === 'genetics' ? (
+                <div className="relative z-10 w-full h-full rounded-full overflow-hidden shadow-2xl flex items-center justify-center">
+                  <motion.div
+                    className="absolute inset-0 bg-[#8073e7]/40 blur-2xl rounded-full"
+                    animate={{ opacity: [0.4, 0.9, 0.4], scale: [0.85, 1.15, 0.85] }}
+                    transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
+                  />
+                  <motion.img 
+                    src="/src/assets/logo-dark.png" 
+                    alt="App Logo" 
+                    className="relative z-10 w-full h-full object-cover rounded-full scale-[1.35]" 
+                    animate={{ rotate: 360 }}
+                    transition={{ duration: 24, repeat: Infinity, ease: 'linear' }}
+                    onError={(e) => {
+                      e.target.style.display = 'none';
+                      e.target.parentElement.innerHTML = `
+                        <span class="material-symbols-outlined" style="font-size: 56px; color: ${SLIDES[current].color}; text-shadow: 0 0 30px ${SLIDES[current].color}66; display: flex; align-items: center; justify-content: center; width: 100%; height: 100%; font-family: 'Material Symbols Outlined';">genetics</span>
+                      `;
+                    }}
+                  />
+                </div>
+              ) : (
+                <span 
+                  className="material-symbols-outlined relative z-10"
+                  style={{ 
+                    fontSize: 56, 
+                    color: SLIDES[current].color, 
+                    textShadow: `0 0 30px ${SLIDES[current].color}66`,
+                    fontFamily: "'Material Symbols Outlined'"
+                  }}
+                >
+                  {SLIDES[current].icon}
+                </span>
+              )}
               
               {/* Floating accents */}
               <motion.div 

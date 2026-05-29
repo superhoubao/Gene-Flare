@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useLanguage } from '../components/utils/LanguageContext';
+import { useDemoState } from '../components/utils/DemoStateContext';
 
 /**
  * AI Consultation Page
@@ -12,6 +13,7 @@ import { useLanguage } from '../components/utils/LanguageContext';
 export default function AIConsultationPage() {
   const { t } = useLanguage();
   const location = useLocation();
+  const { updateState } = useDemoState();
 
   const QUICK_ACTIONS = [
     { id: 'checkin', icon: 'check_circle', label: t('quickActions.healthCheckin'), spark: '+15 SPARK', color: 'bg-primary', text: t('ai.checkinText') },
@@ -161,6 +163,20 @@ export default function AIConsultationPage() {
                 <div className="mt-4 p-4 border-2 border-dashed border-primary/20 rounded-xl bg-primary/5 flex flex-col items-center">
                    <span className="material-symbols-outlined text-primary text-3xl mb-2">cloud_upload</span>
                    <p className="text-[10px] font-bold text-primary uppercase tracking-wider">{t('ai.tapToUpload')}</p>
+                </div>
+              )}
+
+              {msg.role === 'ai' && (msg.content.includes('【MIO 创世深度健康评估】启动成功') || msg.content.includes('[MIO Genesis Deep Health Assessment] completed')) && (
+                <div className="mt-4 flex flex-col gap-2">
+                  <button onClick={() => navigate('/health-score')} className="w-full py-2.5 rounded-xl border border-primary/20 text-primary text-xs font-bold active:scale-95 transition-transform bg-primary/5">
+                    {localStorage.getItem('language') === 'en' ? 'View Assessment Report' : '查看评估报告'}
+                  </button>
+                  <button onClick={() => {
+                    updateState({ isDeepAssessed: true });
+                    navigate('/health-plan');
+                  }} className="w-full py-2.5 rounded-xl vitality-gradient text-white text-xs font-bold shadow-md active:scale-95 transition-transform">
+                    {localStorage.getItem('language') === 'en' ? 'Choose Exclusive Plan' : '去选择专属计划'}
+                  </button>
                 </div>
               )}
             </div>

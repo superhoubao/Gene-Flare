@@ -7,6 +7,7 @@ import ShieldLayout from './pages/shield/ShieldLayout';
 import HealthPlanPage from './pages/health/HealthPlanPage';
 import HealthScorePage from './pages/health/HealthScorePage';
 import HealthRiskFactorsPage from './pages/health/HealthRiskFactorsPage';
+import PlanDetailPage from './pages/health/PlanDetailPage';
 import ProfilePage from './pages/profile/ProfilePage';
 import Settings from './pages/profile/Settings';
 import PrivacyControl from './pages/profile/PrivacyControl';
@@ -43,6 +44,7 @@ export default function App() {
             <Route path="/shield/challenges" element={<Navigate to="/health-plan?focus=institution" replace />} />
             <Route path="/shield/*" element={<ShieldLayout />} />
             <Route path="/health-plan" element={<HealthPlanPage />} />
+            <Route path="/plan-detail/:planId" element={<PlanDetailPage />} />
             <Route path="/health-score" element={<HealthScorePage />} />
             <Route path="/asset-completeness" element={<AssetCompletenessPage />} />
             <Route path="/health-risk-factors" element={<HealthRiskFactorsPage />} />

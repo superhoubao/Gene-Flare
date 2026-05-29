@@ -185,50 +185,37 @@ function LoadingBar({ progress }) {
   );
 }
 
-/* ─── Hex Logo Mark ────────────────────────────────────────────── */
-function HexLogo() {
+/* ─── App Logo ─────────────────────────────────────────────────── */
+function AppLogo() {
   return (
     <motion.div
-      className="relative flex items-center justify-center"
-      initial={{ scale: 0, rotate: -30 }}
-      animate={{ scale: 1, rotate: 0 }}
-      transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
+      className="relative flex items-center justify-center rounded-full overflow-hidden shadow-[0_0_40px_rgba(128,115,231,0.25)]"
+      style={{ width: '120px', height: '120px' }}
+      initial={{ scale: 0.8, opacity: 0 }}
+      animate={{ scale: 1, opacity: 1 }}
+      transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
     >
-      {/* Outer ring pulse */}
       <motion.div
-        className="absolute w-32 h-32 rounded-full border border-emerald-400/20"
-        animate={{ scale: [1, 1.4, 1], opacity: [0.4, 0, 0.4] }}
-        transition={{ duration: 3, repeat: Infinity, ease: 'easeOut' }}
+        className="absolute inset-0 bg-[#8073e7]/40 blur-2xl rounded-full"
+        animate={{ opacity: [0.4, 0.9, 0.4], scale: [0.85, 1.15, 0.85] }}
+        transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
       />
-      <motion.div
-        className="absolute w-24 h-24 rounded-full border border-emerald-400/30"
-        animate={{ scale: [1, 1.3, 1], opacity: [0.6, 0, 0.6] }}
-        transition={{ duration: 3, repeat: Infinity, ease: 'easeOut', delay: 0.5 }}
+      <motion.img 
+        src="/src/assets/logo-dark.png" 
+        alt="App Logo" 
+        className="relative z-10 w-full h-full object-cover rounded-full scale-[1.35]"
+        animate={{ rotate: 360 }}
+        transition={{ duration: 24, repeat: Infinity, ease: 'linear' }}
+        onError={(e) => {
+          // 降级：如果未找到图片，显示默认的 CSS 样式
+          e.target.style.display = 'none';
+          e.target.parentElement.innerHTML = `
+            <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #1b8b8b, #052626); display: flex; align-items: center; justify-content: center; border-radius: 50%;">
+              <span class="material-symbols-outlined" style="color: #53cdcd; font-size: 40px;">genetics</span>
+            </div>
+          `;
+        }}
       />
-
-      {/* Hex shape */}
-      <motion.div
-        className="relative w-20 h-20 flex items-center justify-center"
-        style={{ clipPath: 'polygon(50% 0%, 93.3% 25%, 93.3% 75%, 50% 100%, 6.7% 75%, 6.7% 25%)' }}
-        animate={{ rotate: [0, 360] }}
-        transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
-      >
-        <div
-          className="absolute inset-0"
-          style={{ background: 'linear-gradient(135deg, #1b8b8b, #29b5b5, #53cdcd)' }}
-        />
-        <div className="absolute inset-[2px]"
-          style={{
-            clipPath: 'polygon(50% 0%, 93.3% 25%, 93.3% 75%, 50% 100%, 6.7% 75%, 6.7% 25%)',
-            background: 'linear-gradient(135deg, #052626 0%, #0a3d3d 100%)',
-          }}
-        />
-      </motion.div>
-
-      {/* Center icon – static */}
-      <div className="absolute text-emerald-300 text-2xl select-none" style={{ textShadow: '0 0 20px rgba(83, 205, 205,0.8)' }}>
-        <span className="material-symbols-outlined" style={{ fontSize: 32, fontFamily: "'Material Symbols Outlined'" }}>genetics</span>
-      </div>
     </motion.div>
   );
 }
@@ -293,7 +280,7 @@ export default function SplashScreen() {
 
       {/* Main content */}
       <div className="relative z-10 flex flex-col items-center gap-8 px-6 text-center">
-        <HexLogo />
+        <AppLogo />
 
         {/* Brand name */}
         <motion.div

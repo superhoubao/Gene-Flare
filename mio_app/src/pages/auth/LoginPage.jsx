@@ -193,13 +193,31 @@ export default function LoginPage() {
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
           className="mb-10"
         >
-          {/* Mini hex badge */}
+          {/* Mini logo badge */}
           <motion.div
-            className="w-12 h-12 mb-6 flex items-center justify-center rounded-2xl border border-emerald-500/20"
-            style={{ background: 'linear-gradient(135deg, rgba(41, 181, 181,0.15), rgba(83, 205, 205,0.05))' }}
-            whileHover={{ rotate: 10 }}
+            className="w-12 h-12 mb-6 relative flex items-center justify-center rounded-full overflow-hidden shadow-2xl"
+            whileHover={{ scale: 1.1 }}
           >
-            <span className="material-symbols-outlined text-emerald-400" style={{ fontSize: 22 }}>genetics</span>
+            <motion.div
+              className="absolute inset-0 bg-[#8073e7]/40 blur-md rounded-full"
+              animate={{ opacity: [0.4, 0.9, 0.4], scale: [0.85, 1.15, 0.85] }}
+              transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
+            />
+            <motion.img 
+              src="/src/assets/logo-dark.png" 
+              alt="MIO Logo" 
+              className="relative z-10 w-full h-full object-cover rounded-full scale-[1.35]"
+              animate={{ rotate: 360 }}
+              transition={{ duration: 24, repeat: Infinity, ease: 'linear' }}
+              onError={(e) => {
+                e.target.style.display = 'none';
+                e.target.parentElement.innerHTML = `
+                  <div style="width: 100%; height: 100%; background: linear-gradient(135deg, rgba(41, 181, 181,0.15), rgba(83, 205, 205,0.05)); display: flex; align-items: center; justify-content: center; border: 1px solid rgba(16, 185, 129, 0.2); border-radius: 50%;">
+                    <span class="material-symbols-outlined text-emerald-400" style="font-size: 22px;">genetics</span>
+                  </div>
+                `;
+              }}
+            />
           </motion.div>
 
           <h1 className="text-3xl font-black tracking-[-0.05em] text-white mb-2">

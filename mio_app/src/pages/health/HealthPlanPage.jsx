@@ -14,6 +14,7 @@ export default function HealthPlanPage() {
   
   // 完全由全局 hasActivePlans 状态联动
   const isNewUser = !demoState.hasActivePlans;
+  const showAssessmentBanner = isNewUser && !demoState.isDeepAssessed;
   
   console.log('HealthPlan View Mode:', isNewUser ? 'SQUARE' : 'PLANS', 'Executing Plans:', executingPlans.length);
 
@@ -39,7 +40,7 @@ export default function HealthPlanPage() {
         {/* ========================================================= */}
         {/* NEW USER: Immensely Clear, High-Contrast Top Assessment Banner */}
         {/* ========================================================= */}
-        {isNewUser && (
+        {showAssessmentBanner && (
           <motion.section 
             whileHover={{ y: -3, border: '2px solid rgba(251,191,36,0.7)', boxShadow: '0 24px 60px rgba(245,158,11,0.35)' }}
             whileTap={{ scale: 0.99 }}
